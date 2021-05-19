@@ -1,6 +1,3 @@
-export const ADD_TO_CART = 'ADD_TO_CART'
-export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
-
 
 export const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS'
 export const RECEIVE_PRODUCTS = 'GET_PRODUCTS'
@@ -17,3 +14,5 @@ export const RECEIVE_ORDERS_ERROR = 'RECEIVE_ORDERS_ERROR'
 export const LOGOUT = 'LOGOUT'
 export const SET_ADDRESS = 'SET_ADDRESS'
 export const REMOVE_ADDRESS = 'REMOVE_ADDRESS'
+
+
