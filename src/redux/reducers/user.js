@@ -69,5 +69,7 @@ export const userReducer = (state = initialState, action) => {
                 ...state,
                 address: initialState.address
             }
+        default:
+            return state;
     }
 }
