@@ -19,14 +19,14 @@ export const cartReducer = (state = initialState, action) => {
         case ADD_TO_CART:
             return {
                 ...state,
-                cartItems: [...cartItems, action.payload],
+                cartItems: [...state.cartItems, action.payload],
             }
         case REMOVE_FROM_CART:
             return {
                 ...state,
                 cartItems: [
-                    ...cartItems.slice(0, action.payload),
-                    ...cartItems.slice(action.payload+1)
+                    ...state.cartItems.slice(0, action.payload),
+                    ...state.cartItems.slice(action.payload+1)
                 ]
             }
         // case types.ADD_TO_CART_REQUEST:
