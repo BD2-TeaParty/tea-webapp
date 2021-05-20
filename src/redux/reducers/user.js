@@ -1,4 +1,16 @@
-import { LOGOUT, SET_ADDRESS, REMOVE_ADDRESS, LOGIN_SUCCESS, LOGIN_ERROR, REQUEST_ORDERS, REQUEST_LOGIN, RECEIVE_ORDERS, RECEIVE_ORDERS_ERROR } from '../constants/actionTypes';
+import { LOGOUT, 
+    SET_ADDRESS, 
+    REMOVE_ADDRESS, 
+    REQUEST_LOGIN,
+    LOGIN_SUCCESS, 
+    LOGIN_ERROR, 
+    REQUEST_ORDERS, 
+    RECEIVE_ORDERS, 
+    RECEIVE_ORDERS_ERROR,
+    REQUEST_WISHLIST,
+    RECEIVE_WISHLIST, 
+    RECEIVE_WISHLIST_ERROR,
+} from '../constants/userTypes';
 
 const initialState = {
     user: { id: "", name: ""},
@@ -9,6 +21,10 @@ const initialState = {
     orders: [],
     ordersLoading: false,
     ordersError: false,
+
+    wishlist: [],
+    isLoading: false,
+    error: false,
 }
 
 
@@ -68,6 +84,27 @@ export const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 address: initialState.address
+            }
+        case REQUEST_WISHLIST:
+            return {
+                ...state,
+                wishlist: [],
+                isLoading: true,
+                error: false
+            }
+        case RECEIVE_WISHLIST: 
+            return {
+                ...state,
+                wishlist: action.payload,
+                isLoading: false,
+                error: false
+            }
+        case RECEIVE_WISHLIST_ERROR:
+            return {
+                ...state,
+                wishlist: [],
+                isLoading: false,
+                error: true,
             }
         default:
             return state;
