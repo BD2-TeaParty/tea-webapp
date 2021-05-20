@@ -1,0 +1,55 @@
+.user-container {
+    flex-direction: row;
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    /* margin-right: 5rem; */
+    
+    /* vertical-align: center; */
+    /* align-self: center; */
+}
+
+/* .link-container {
+    height: auto;
+    position: relative;
+    color: aqua;
+    justify-content: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    text-align: center;
+} */
+.cart-div {
+    margin-right: 2rem;
+    display: flex;
+    /* align-self: center; */
+    /* background-color: #8BC34A; */
+    /* border-radius: 20px; */
+    /* padding-bottom: 5px;
+    padding-top: 5px;
+    width: 5.5rem; */
+}
+.cart-button {
+    /* align-self: center; */
+    width: 10rem;
+}
+/* .cart-icon {
+    font-size: 30;
+     color: white; 
+} */
+.wishlist-span {
+    /* margin-right: 5rem; */
+    /* margin-left: 1rem; */
+    /* flex: 1; */
+    /* height: 100%; */
+    /* align-self: center; */
+    display: flex;
+
+}
+.wishlist-button {
+    width: 3rem;
+}
+
+.account-button {
+    /* height: auto; */
+    width: 7.5rem;
+}

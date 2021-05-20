@@ -1,21 +1,16 @@
 .nav-container {
-    background-color: '#eee';
+    flex-direction: row;
     display: flex;
-    justify-content: center;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    height: 3.5rem;
 }
 
 
-.nav-link-container {
-    height: auto;
-    position: relative;
-    color: aqua;
-    width: 5rem;
-    padding: 1rem;
-    border: none;
-    outline: none;
-    font-size: 1.2rem;
+.product-router-container {
+    flex: 2;
+    /* vertical-align: middle; */
 }
 
-/* .nav-link {
-    text
-} */
+.user-router-container {
+    flex: 1;
+}

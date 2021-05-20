@@ -1,24 +1,33 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import PersonIcon from '@material-ui/icons/Person';
+import { NavLink, Link } from 'react-router-dom'
+import PersonOutlineIcon from '@material-ui/icons/Person';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+
+import './UserRoutes.css';
+import { Button } from '@material-ui/core';
 const UserRoutes = () => {
 
 
     return (
-        <div>
-            <NavLink to='/user'>
-                <PersonIcon />
-            </NavLink>
+        <div className='user-container'>
 
-            <NavLink to='/user/wishlist'>
-                <FavoriteBorderIcon />
-            </NavLink>
+            <Button component={Link} to='/user' className='account-button'>
+                <PersonOutlineIcon style={{ fontSize: 30 }}/>
+            </Button>
 
-            <NavLink to='/cart'>
-                <ShoppingCartIcon />
-            </NavLink>
+            <div className='wishlist-span'>
+                <Button component={Link} to='/user/wishlist' className='wishlist-button' >
+                    <FavoriteBorderIcon style={{ fontSize: 15, color: '#d50000' }}/>
+                </Button>
+            </div>
+
+            <div className='cart-div'>
+            <Button component={Link} to='/cart' className='cart-button'>
+                <ShoppingCartOutlinedIcon style={{ fontSize: 30, color: '#222' }}/>
+                {/* Koszyk */}
+            </Button>
+            </div>
         </div>
     )
 }

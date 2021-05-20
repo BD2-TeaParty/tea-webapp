@@ -1,0 +1,30 @@
+.sub-container {
+    flex-direction: row;
+    display: flex;
+    flex: 2;
+}
+
+.logo-container {
+    flex: 1;
+    align-items: left;
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    /* width: 100%; */
+}
+.link-container {
+    flex: 1;
+    height: 100%;
+    align-self: center;
+    display: flex;
+}
+
+.logo-button {
+    width: 50%;
+    /* flex: 1; */
+    position: inherit;
+    left: 5;
+}
+.button {
+    width: 100%;
+}

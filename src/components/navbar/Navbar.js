@@ -22,13 +22,13 @@ const Navbar = () => {
 
     return (
         <div className='nav-container'>
-            <div>
+            {/* <div className='product-router-container'> */}
                 <ProductRoutes />
 
-            </div>
-            <div>
+            {/* </div> */}
+            {/* <div className='user-router-container'> */}
                 <UserRoutes />
-            </div>
+            {/* </div> */}
         </div>
     )
 }
