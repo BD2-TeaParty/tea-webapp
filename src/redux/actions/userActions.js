@@ -38,7 +38,7 @@ const logout = () => ({
 export const signIn = data => dispatch => {
 
 
-    dispatch(requestLogin);
+    dispatch(requestLogin());
 
     return axios({
         url: LOGIN_ENDPOINT,
@@ -62,7 +62,7 @@ export const signIn = data => dispatch => {
 export const signOut = dispatch => {
     
     console.log('logging out');
-    dispatch(logout)
+    dispatch(logout())
 }
 
 
@@ -86,7 +86,7 @@ export const fetchOrders = dispatch => {
     const postJson = {
         userID: userID
     }
-    dispatch(requestOrders);
+    dispatch(requestOrders());
 
 
     return axios({
@@ -129,7 +129,7 @@ export const fetchWishlist = dispatch => {
     const postJson = {
         userID: userID
     }
-    dispatch(requestWishlist);
+    dispatch(requestWishlist());
 
 
     return axios({

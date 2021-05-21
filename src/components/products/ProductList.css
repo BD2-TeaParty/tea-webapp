@@ -1,0 +1,19 @@
+.product-container {
+    width: 80%;
+    height: 90vh;
+    align-content: center;
+    margin: 0 auto;
+    margin-top: 200px;
+
+}
+
+.loading-line {
+    margin: 50px auto;
+    width: 50%;
+    border-top-left-radius: 0vh;
+}
+
+.loading-text {
+    font-size: 1.5rem;
+    text-align: center;
+}

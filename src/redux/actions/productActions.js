@@ -3,7 +3,7 @@ import {
     REQUEST_PRODUCTS, 
     RECEIVE_PRODUCTS, 
     RECEIVE_PRODUCTS_ERROR 
-} from "../constants/actionTypes"
+} from "../constants/productTypes"
 
 
 const requestProducts = () => ({
@@ -23,8 +23,8 @@ const receiveProductsError = json => ({
 export const fetchProducts = url => dispatch => {
     //zalozenie ze w komponentach wolamy get z odpowiednim zapytaniem np ?tea ?coffee ?accessories 
 
-    dispatch(requestProducts);
-    
+    dispatch(requestProducts());
+
     return axios({
         url: url,
         timeout: 10000,

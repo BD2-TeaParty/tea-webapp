@@ -7,23 +7,21 @@ import ProductList from './components/products/ProductList';
 // import { Typography } from '@material-ui/core';
 function App() {
     return (
-        // <div className="App">
-        //     <header className="App-header">
 
-        //         <Typography style={{color: '#fff'}}> XD </Typography>
-
-        //     </header>
-        // </div>
         <Router>
             <div className='container'>
                 <Navbar />
 
+                <div className='content-container'>
                 <Switch>
                     <Route exact path='/'>
-                        <ProductList />
+                        <ProductList type='all'/>
+                    </Route>
+                    <Route path='/tea'>
+                        <ProductList type='tea' />
                     </Route>
                 </Switch>
-
+                </div>
             </div>
         </Router>
     );
