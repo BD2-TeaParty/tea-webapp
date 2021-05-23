@@ -1,10 +1,11 @@
-import { LinearProgress, Typography } from "@material-ui/core";
+import { GridList, GridListTile, LinearProgress, Typography } from "@material-ui/core";
 import { useEffect } from "react"
 import { connect } from "react-redux"
 import { PRODUCTS_ENDPOINT } from "../../util/ApiLinks";
 import * as types from '../../util/fetchTypes';
 import { fetchProducts } from '../../redux/actions/productActions';
 import './ProductList.css';
+import ProductPanel from "./ProductPanel";
 
 const ProductList = props => {
 
@@ -54,7 +55,14 @@ const ProductList = props => {
             } else {
                 return (
                     <div className='product-container'>
-                        <Typography>tu produkty</Typography>
+                        {/* <Typography>tu produkty</Typography> */}
+                        <GridList cols={3} cellHeight={300} className='gridlist' >
+                            {props.products.map( (product) => ( 
+                               
+                                    <ProductPanel {...product} />
+                                // </GridListTile>
+                            ))}
+                        </GridList>
                     </div>
                 )
             }
