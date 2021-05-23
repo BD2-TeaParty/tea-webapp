@@ -33,9 +33,9 @@ const ProductList = props => {
     }, [props.type])
 
 
-    const cartCallback = index => {
+    const cartCallback = id => {
         // console.log('cartCallback with index ', index);
-        const item = props.products[index];
+        const item = props.products.find( product => product.id === id);
         // console.log('cartCallback with item:', item);
         props.addItem(item);
     }

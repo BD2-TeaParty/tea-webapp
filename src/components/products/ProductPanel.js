@@ -14,7 +14,7 @@ const ProductPanel = props => {
 
         <GridListTile key={props.id} className='gridlist-item'>
 
-            <img src={img1} className='product-panel-image'/>
+            <img src={props.img} className='product-panel-image'/>
 
             <Typography className='product-panel-title-text'>{props.title}</Typography>
             

@@ -10,7 +10,9 @@ import './CartProduct.css';
 const CartProduct = props => {
 
     // console.log('\nproduct panel ', props);
-    // const item = props.item;
+
+    const quantityMsg = 'W koszyku:';
+    const removeMsg = 'Usuń z koszyka';
     return (
 
         <GridListTile key={props.item.id} className='cart-gridlist-item '>
@@ -24,10 +26,14 @@ const CartProduct = props => {
             </div>
 
             <div className='cart-item-bottombar'>
+
+                <Typography className='cart-item-quantity'>{quantityMsg} {props.quantity}</Typography>
                 <IconButton className='cart-item-icon' onClick={ () => props.cartCallback(props.item.id)}>
+                    <Typography>{removeMsg}</Typography>
                     <RemoveShoppingCartIcon style={{color: 'd50000'}}/>
                 </IconButton>
 
+                {/* <Typography>{quantityMsg} {props.quantity}</Typography> */}
             </div>
         </GridListTile> 
     )
