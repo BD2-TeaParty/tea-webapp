@@ -2,7 +2,8 @@ import axios from "axios";
 import { 
     REQUEST_PRODUCTS, 
     RECEIVE_PRODUCTS, 
-    RECEIVE_PRODUCTS_ERROR 
+    RECEIVE_PRODUCTS_ERROR, 
+    RECEIVE_PRODUCTS_TEST
 } from "../constants/productTypes"
 
 
@@ -20,12 +21,19 @@ const receiveProductsError = json => ({
     payload: json,
 })
 
+const receiveTest = () => ({
+    type: RECEIVE_PRODUCTS_TEST
+})
+
 export const fetchProducts = url => dispatch => {
     //zalozenie ze w komponentach wolamy get z odpowiednim zapytaniem np ?tea ?coffee ?accessories 
 
     dispatch(requestProducts());
 
-    return axios({
+    setTimeout( () => {
+        dispatch(receiveTest());
+    }, 1000);
+    /*return axios({
         url: url,
         timeout: 10000,
         method: 'GET',
@@ -40,5 +48,5 @@ export const fetchProducts = url => dispatch => {
         .catch( response => {
             console.log('Got products error:', response);
             dispatch(receiveProductsError(response.data));
-        })
+        })*/
 }
