@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-// import { Router } from 'react-router';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from './components/navbar/Navbar';
 import ProductList from './components/products/ProductList';
-// import { Typography } from '@material-ui/core';
+import CartView from './components/cart/CartView';
+
 function App() {
     return (
 
@@ -19,6 +19,9 @@ function App() {
                     </Route>
                     <Route path='/tea'>
                         <ProductList type='tea' />
+                    </Route>
+                    <Route path='/cart'>
+                        <CartView />
                     </Route>
                 </Switch>
                 </div>

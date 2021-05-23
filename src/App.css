@@ -6,8 +6,9 @@
 
 
 .content-container {
-    height: 90vh;
+    /* height: 90vh; */
     width: 100%;
     align-content: center;
     align-items: center;
+    margin-bottom: 100px;
 }

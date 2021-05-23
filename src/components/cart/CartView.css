@@ -1,0 +1,32 @@
+
+
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    min-height: 20%;
+    border: 1px solid;
+    margin: 100px auto;
+    /* margin-top: 100px; */
+    border-radius: 10px;
+}
+
+.cart-icon {
+    display: inline-flex;
+    /* margin: 0 auto; */
+}
+.cart-text {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #424242;
+}
+
+.cart-gridlist {
+    position: relative;
+    border: 1px solid;
+    border-radius: 10px;
+    justify-content: center;
+    width: 100%;
+}
