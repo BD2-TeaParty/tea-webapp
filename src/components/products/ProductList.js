@@ -6,10 +6,12 @@ import * as types from '../../util/fetchTypes';
 import { fetchProducts } from '../../redux/actions/productActions';
 import './ProductList.css';
 import ProductPanel from "./ProductPanel";
+import { addItem } from "../../redux/actions/cartActions";
 
 const ProductList = props => {
 
-    console.log('\nProductList::\n', props);
+    // console.log('\nProductList::\n', props);
+    
     useEffect( () => {
         switch (props.type) {
             case types.ALL:
@@ -29,6 +31,14 @@ const ProductList = props => {
                 break;
         }
     }, [props.type])
+
+
+    const cartCallback = index => {
+        // console.log('cartCallback with index ', index);
+        const item = props.products[index];
+        // console.log('cartCallback with item:', item);
+        props.addItem(item);
+    }
 
     const getProductStatus = () => {
 
@@ -59,7 +69,7 @@ const ProductList = props => {
                         <GridList cols={3} cellHeight={300} className='gridlist' >
                             {props.products.map( (product) => ( 
                                
-                                    <ProductPanel {...product} />
+                                    <ProductPanel {...product} cartCallback={cartCallback}/>
                                 // </GridListTile>
                             ))}
                         </GridList>
@@ -82,4 +92,5 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 
-export default connect(mapStateToProps, { fetchProducts })(ProductList);
+
+export default connect(mapStateToProps, { fetchProducts, addItem })(ProductList);
