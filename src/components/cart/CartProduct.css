@@ -11,6 +11,7 @@
     border-radius: 10px;
     margin: 10px 10px;
     overflow: hidden;
+    display: flex;
 }
 
 .cart-item-img {
@@ -31,9 +32,13 @@
     border-radius: 10px !important;
 }
 
+.cart-item-title-view {
+    padding: 10px;
+}
 .cart-item-title-text {
     
     text-align: center;
+    font-size: 1rem;
 }
 
 .cart-item-description-view {
@@ -41,7 +46,7 @@
 }
 
 .cart-item-description-text {
-    font-size: 0.75rem;
+    font-size: 0.5rem;
 }
 
 .cart-item-bottombar {
@@ -49,4 +54,9 @@
     justify-content: space-between;
     display: flex;
     flex-direction: row;
+    justify-self: flex-end !important;
 }   
+
+.cart-item-subadd {
+    margin-left: 10px;
+}

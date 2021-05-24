@@ -1,7 +1,7 @@
 import { GridList, Typography } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
-import { removeItem } from '../../redux/actions/cartActions';
+import { addItem, removeItem, decreaseItem, increaseItem } from '../../redux/actions/cartActions';
 import './CartView.css';
 import NotInterestedIcon from '@material-ui/icons/NotInterested';
 import ProductPanel from '../products/ProductPanel';
@@ -20,13 +20,32 @@ const CartView = props => {
         props.removeItem(index);
     }
 
+    const addQuantityCallback = id => {
+        const index = props.cart.findIndex( cartObj => cartObj.item.id === id);
+        props.increaseItem(index)
+        
+    }
+
+    const decreaseQuantityCallback = id => {
+        const index = props.cart.findIndex( cartObj => cartObj.item.id === id);
+
+        if(props.cart[index].quantity - 1 < 1)
+            props.removeItem(index);
+        else
+            props.decreaseItem(index);
+    }
     
     if (props.cart && props.cart.length) {
         return (
             <div className='cart-container'>
                 <Typography className='cart-text' variant='h5'>{cartMsg}</Typography>
                 <GridList cols={3} cellHeight={300} className='cart-gridlist'>
-                    {props.cart.map( (product) => ( <CartProduct {...product} cartCallback={removeCallback}/>))}
+                    {props.cart.map( (product) => ( 
+                        <CartProduct {...product} 
+                            cartCallback={removeCallback} 
+                            addCallback={addQuantityCallback} 
+                            decreaseCallback={decreaseQuantityCallback} />
+                    ))}
                 </GridList>
             </div>
         )
@@ -56,4 +75,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, { removeItem })(CartView);
+export default connect(mapStateToProps, { addItem, removeItem, decreaseItem, increaseItem })(CartView);

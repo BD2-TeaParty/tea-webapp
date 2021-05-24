@@ -1,5 +1,7 @@
 import {
     ADD_TO_CART,
+    DECREASE_QUANTITY,
+    INCREASE_QUANTITY,
     REMOVE_FROM_CART,
 } from '../constants/cartTypes';
 
@@ -41,6 +43,22 @@ export const cartReducer = (state = initialState, action) => {
                     ...state.cartItems.slice(0, action.payload),
                     ...state.cartItems.slice(action.payload+1)
                 ]
+            }
+        case INCREASE_QUANTITY:
+            return {
+                ...state,
+                cartItems: state.cartItems.map( (item, i) =>
+                        action.payload === i
+                        ? {...item, quantity: item.quantity + 1 }
+                        : item)
+            }
+        case DECREASE_QUANTITY:
+            return {
+                ...state,
+                cartItems: state.cartItems.map((item, i) =>
+                        action.payload === i
+                        ? { ...item, quantity: item.quantity - 1}
+                        : item) 
             }
         // case types.ADD_TO_CART_REQUEST:
         //     return {
