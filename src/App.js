@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from './components/navbar/Navbar';
 import ProductList from './components/products/ProductList';
 import CartView from './components/cart/CartView';
+import UserView from './components/user/UserView';
 
 function App() {
     return (
@@ -22,6 +23,9 @@ function App() {
                     </Route>
                     <Route path='/cart'>
                         <CartView />
+                    </Route>
+                    <Route path='/user'>
+                        <UserView />
                     </Route>
                 </Switch>
                 </div>
