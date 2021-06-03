@@ -65,8 +65,8 @@ const ProductList = props => {
             } else {
                 return (
                     <div className='product-container'>
-                        {/* <Typography>tu produkty</Typography> */}
-                        <GridList cols={3} cellHeight={300} className='gridlist' >
+                        <Typography className='product-container-title' variant='h5'>Produkty</Typography>
+                        <GridList  className='gridlist' >
                             {props.products.map( (product) => ( 
                                
                                     <ProductPanel {...product} cartCallback={cartCallback}/>

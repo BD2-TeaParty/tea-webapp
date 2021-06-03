@@ -16,10 +16,10 @@ const ProductPanel = props => {
 
             <img src={props.img} className='product-panel-image'/>
 
-            <Typography className='product-panel-title-text'>{props.title}</Typography>
+            <Typography className='product-panel-title-text' variant='h6'>{props.title}</Typography>
             
             <div className='product-panel-description'>
-                <Typography className='product-panel-description-text'>{props.description}</Typography>
+                <Typography nowrap className='product-panel-description-text'>{props.description}</Typography>
             </div>
 
             <div className='product-panel-bottom-bar'>

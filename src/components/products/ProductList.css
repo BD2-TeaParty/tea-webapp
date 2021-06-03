@@ -7,6 +7,12 @@
 
 }
 
+.product-container-title {
+    font-size: 2rem;
+    text-align: center;
+    color: #424242;
+}
+
 .loading-line {
     margin: 50px auto;
     width: 50%;
@@ -18,26 +24,7 @@
     text-align: center;
 }
 
-
 .gridlist {
-    /* display: flex; */
-    position: relative;
-    border: 1px solid;
-    border-radius: 10px;
     justify-content: center;
 }
 
-.gridlist-item {
-    /* border: 3px solid; */
-    border-radius: 25px;
-    /* position: relative; */
-    overflow: hidden;
-    /* min-width: 200px; */
-    padding: 0px;
-    max-width: 23%;
-    /* display: flex; */
-    align-content: center;
-    margin: 10px 10px;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-
-}
