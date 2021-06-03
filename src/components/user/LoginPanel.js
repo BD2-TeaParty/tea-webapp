@@ -45,7 +45,7 @@ const LoginPanel = (loginCallback) => {
 
     const toggleRegister = () => {
         if (registerExpanded && !loginExpanded) {
-            setRegisterExpanded(true);
+            setRegisterExpanded(false);
         } else if (!registerExpanded && loginExpanded) {
             setLoginExpanded(false);
             setRegisterExpanded(true);
