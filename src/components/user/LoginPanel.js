@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
-import { Accordion, AccordionDetails, AccordionSummary, Button, TextField, Typography, withStyles } from '@material-ui/core';
+import React, { useRef, useState } from 'react';
+import { connect } from 'react-redux';
+import { Accordion, AccordionDetails, AccordionSummary, Button, 
+        CircularProgress, TextField, Typography, withStyles }
+from '@material-ui/core';
 
+import { signIn } from '../../redux/actions/userActions';
 
 import './LoginPanel.css';
 
@@ -26,13 +30,63 @@ const CustomAccordion = withStyles( () => ({
 }))(Accordion);
 
 
-const LoginPanel = (loginCallback) => {
+const LoginPanel = props => {
 
     const notLoggedIn = 'Nie jesteś zalogowany!'
 
     const [loginExpanded, setLoginExpanded] = useState(false);
     const [registerExpanded, setRegisterExpanded] = useState(false);
 
+    const [loginSubmitClicked, setLoginSubmitClicked] = useState(true);
+    const [registerPasswordError, setRegisterPasswordError] = useState(false);
+    const [registerHelperText, setRegisterHelperText] = useState('');
+
+    const loginRef = useRef();
+    const passwordRef = useRef();
+
+    const registerNick = useRef();
+    const registerMail = useRef();
+    const registerPassword = useRef();
+    const registerRepeatPassword = useRef();
+
+
+    const submitLogin = () => {
+        const loginJson = {}
+
+        loginJson.user = loginRef.current.value;
+        loginJson.password = passwordRef.current.value;
+        
+        setLoginSubmitClicked(true);
+        console.log(loginSubmitClicked, props.userLoading, props.userError);
+
+        console.log(loginJson);
+        props.signIn(loginJson);
+    }
+
+    const submitRegister = () => {
+        setLoginSubmitClicked(false);        
+
+        const registerJson = {}
+
+        registerJson.nick = registerNick.current.value;
+        registerJson.mail = registerMail.current.value;
+        
+        if (registerPassword.current.value === registerRepeatPassword.current.value) {
+            registerJson.password = registerPassword.current.value;
+            // props.tryRegistering(registerJson);
+        } else {
+
+            setRegisterPasswordError(true);
+            setRegisterHelperText('Hasła nie są takie same');
+        }
+
+        console.log(registerJson);
+
+    }
+    const resetError = () => {
+        setRegisterPasswordError(false);
+        setRegisterHelperText('');
+    }
     const toggleLogin = () => {
         if (loginExpanded && !registerExpanded ) {
             setLoginExpanded(false);
@@ -54,7 +108,6 @@ const LoginPanel = (loginCallback) => {
     }
 
 
-
     return (
         <section id='login-panel-papa' className='login-container'>
             <div id='login-panel' className='login-panel'>
@@ -63,31 +116,51 @@ const LoginPanel = (loginCallback) => {
                 </div>
                 <div className='login-panel-content' >
 
+                    {props.userLoading ? <CircularProgress /> : null}
+
                      <CustomAccordion variant='outlined' expanded={loginExpanded} >
+
                         <AccordionSummary onClick={ () => toggleLogin()}>
                             <Typography style={{textAlign: 'center', flex: 1, fontWeight: 600}}>ZALOGUJ SIĘ</Typography>
                         </AccordionSummary>
+
                         <AccordionDetails style={{flexDirection: 'column', backgroundColor: '#fff', alignItems: 'center'}}>
-                            <TextField fullWidth label='Pseudonim / e-mail'/>
-                            <TextField fullWidth label='Hasło'/>
-                            <Button variant='outlined' color='secondary'>Potwierdź</Button>
+                            <TextField fullWidth label='Pseudonim / e-mail' inputRef={loginRef}/>
+                            <TextField fullWidth label='Hasło' inputRef={passwordRef}/>
+                            <Button variant='outlined' color='secondary' onClick={() => submitLogin()}>Potwierdź</Button>
+
+                            {loginSubmitClicked && props.userError 
+                                ? <Typography style={{color: 'red', fontSize: '0.75rem'}}>{props.errorMessage}</Typography>
+                                : null 
+                            }
+
                         </AccordionDetails>
-                        
                     </CustomAccordion>
 
 
                     <CustomAccordion variant='outlined' expanded={registerExpanded} >
+
                         <AccordionSummary onClick={ () => toggleRegister()} >
                             <Typography style={{textAlign: 'center', flex: 1, fontWeight: 600}}>ZAREJESTRUJ SIĘ</Typography>
                         </AccordionSummary>
+
                         <AccordionDetails style={{flexDirection: 'column', backgroundColor: '#fff', alignItems: 'center'}}>
-                            <TextField fullWidth label='Pseudonim'/>
-                            <TextField fullWidth label='e-mail'/>
-                            <TextField fullWidth label='Hasło'/>
-                            <TextField fullWidth label='Powtórz hasło'/>
-                            <Button variant='outlined' color='secondary'>Potwierdź</Button>
+                            <TextField fullWidth label='Pseudonim' inputRef={registerNick}/>
+                            <TextField fullWidth label='e-mail' inputRef={registerMail}/>
+                            <TextField fullWidth label='Hasło' inputRef={registerPassword}/>
+                            <TextField fullWidth label='Powtórz hasło' inputRef={registerRepeatPassword} 
+                                error={registerPasswordError} 
+                                helperText={registerHelperText}
+                                onClick={() => resetError()}
+                            />
+                            <Button variant='outlined' color='secondary' onClick={ () => submitRegister()}>Potwierdź</Button>
+
+                            { !loginSubmitClicked && props.userError 
+                                ? <Typography style={{color: 'red', fontSize: '0.75rem'}}>{props.errorMessage}</Typography>
+                                : null 
+                            }
+                            
                         </AccordionDetails>
-                        
                     </CustomAccordion>
 
                 </div>
@@ -96,5 +169,13 @@ const LoginPanel = (loginCallback) => {
     )
 }
 
+const mapStateToProps = (state) => {
+    return {
+        userLoading: state.userReducer.userLoading,
+        userError: state.userReducer.userError,
+        errorMessage: state.userReducer.errorMessage,
+    }
+}
 
-export default LoginPanel;
+
+export default connect(mapStateToProps, {signIn})(LoginPanel);

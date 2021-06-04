@@ -55,7 +55,7 @@ export const signIn = data => dispatch => {
 
         .catch( response => {
             console.log('Got user error:', response);
-            dispatch(loginError(response.data));
+            dispatch(loginError(response.message));
         })
 }
 

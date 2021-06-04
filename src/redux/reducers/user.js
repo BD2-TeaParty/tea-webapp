@@ -17,6 +17,7 @@ const initialState = {
     address: { city: "", street: "", streetNo: "", houseNo: ""},
     userLoading: false,
     userError: false,
+    errorMessage: '',
 
     orders: [],
     ordersLoading: false,
@@ -43,13 +44,15 @@ export const userReducer = (state = initialState, action) => {
                 ...state,
                 user: action.payload,
                 userLoading: false,
-                userError: false
+                userError: false,
+                errorMessage: '',
             }
         case LOGIN_ERROR:
             return {
                 ...state,
                 userLoading: false,
                 userError: true,
+                errorMessage: action.payload
             }
         case LOGOUT:
             return initialState;
@@ -72,6 +75,7 @@ export const userReducer = (state = initialState, action) => {
                 ...state,
                 ordersLoading: false,
                 ordersError: true,
+                errorMessage: '',
             }
 
         case SET_ADDRESS:
