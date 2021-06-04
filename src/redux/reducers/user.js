@@ -10,6 +10,9 @@ import { LOGOUT,
     REQUEST_WISHLIST,
     RECEIVE_WISHLIST, 
     RECEIVE_WISHLIST_ERROR,
+    REQUEST_REGISTER,
+    REGISTER_SUCCESS,
+    REGISTER_ERROR,
 } from '../constants/userTypes';
 
 const initialState = {
@@ -56,7 +59,28 @@ export const userReducer = (state = initialState, action) => {
             }
         case LOGOUT:
             return initialState;
-
+        case REQUEST_REGISTER:
+            return {
+                ...state,
+                userLoading: true,
+                userError: false,
+                errorMessage: ''
+            }
+        case REGISTER_SUCCESS:
+            return {
+                ...state,
+                user: action.payload,
+                userLoading: false,
+                userError: false,
+                errorMessage: ''
+            }
+        case REGISTER_ERROR: 
+        return {
+            ...state,
+            userLoading: false,
+            userError: true,
+            errorMessage: action.payload,
+        }
         case REQUEST_ORDERS:
             return {
                 ...state,

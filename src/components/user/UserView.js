@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
-import LoginPanel from './LoginPanel';
+import GuestPanel from './GuestPanel';
 
 import './UserView.css'
 
@@ -15,7 +15,7 @@ const UserView = props => {
     return (
         <section id='user-view' className='user-view'>
             {/* <Typography>logged in: {props.isLoggedIn ? 'yes' : 'no'}</Typography> */}
-            <LoginPanel />
+            <GuestPanel />
         </section>
     )
 }

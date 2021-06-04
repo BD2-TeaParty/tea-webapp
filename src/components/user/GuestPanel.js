@@ -4,9 +4,9 @@ import { Accordion, AccordionDetails, AccordionSummary, Button,
         CircularProgress, TextField, Typography, withStyles }
 from '@material-ui/core';
 
-import { signIn } from '../../redux/actions/userActions';
+import { registerUser, signIn } from '../../redux/actions/userActions';
 
-import './LoginPanel.css';
+import './GuestPanel.css';
 
 const CustomAccordion = withStyles( () => ({
     root: {
@@ -30,7 +30,7 @@ const CustomAccordion = withStyles( () => ({
 }))(Accordion);
 
 
-const LoginPanel = props => {
+const GuestPanel = props => {
 
     const notLoggedIn = 'Nie jesteś zalogowany!'
 
@@ -40,6 +40,7 @@ const LoginPanel = props => {
     const [loginSubmitClicked, setLoginSubmitClicked] = useState(true);
     const [registerPasswordError, setRegisterPasswordError] = useState(false);
     const [registerHelperText, setRegisterHelperText] = useState('');
+    const [registerSubmitted, setRegisterSubmitted] = useState(false);
 
     const loginRef = useRef();
     const passwordRef = useRef();
@@ -61,10 +62,10 @@ const LoginPanel = props => {
 
         console.log(loginJson);
         props.signIn(loginJson);
+        return;
     }
 
     const submitRegister = () => {
-        setLoginSubmitClicked(false);        
 
         const registerJson = {}
 
@@ -72,15 +73,21 @@ const LoginPanel = props => {
         registerJson.mail = registerMail.current.value;
         
         if (registerPassword.current.value === registerRepeatPassword.current.value) {
+
             registerJson.password = registerPassword.current.value;
-            // props.tryRegistering(registerJson);
+            // console.log(registerJson);
+            setLoginSubmitClicked(false);        
+            props.registerUser(registerJson);
+            setRegisterSubmitted(true);
+
         } else {
 
             setRegisterPasswordError(true);
             setRegisterHelperText('Hasła nie są takie same');
+            setRegisterSubmitted(false);
+            setLoginSubmitClicked(false);        
         }
 
-        console.log(registerJson);
 
     }
     const resetError = () => {
@@ -155,7 +162,7 @@ const LoginPanel = props => {
                             />
                             <Button variant='outlined' color='secondary' onClick={ () => submitRegister()}>Potwierdź</Button>
 
-                            { !loginSubmitClicked && props.userError 
+                            { !loginSubmitClicked && !registerPasswordError && registerSubmitted && props.userError
                                 ? <Typography style={{color: 'red', fontSize: '0.75rem'}}>{props.errorMessage}</Typography>
                                 : null 
                             }
@@ -178,4 +185,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {signIn})(LoginPanel);
+export default connect(mapStateToProps, {signIn, registerUser})(GuestPanel);

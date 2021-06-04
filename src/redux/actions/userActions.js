@@ -1,9 +1,12 @@
 import axios from 'axios';
-import { LOGIN_ENDPOINT, ORDERS_ENDPOINT, WISHLIST_ENDPOINT } from '../../util/ApiLinks';
+import { LOGIN_ENDPOINT, ORDERS_ENDPOINT, REGISTER_ENDPOINT, WISHLIST_ENDPOINT } from '../../util/ApiLinks';
 import { 
     REQUEST_LOGIN, 
     LOGIN_SUCCESS, 
     LOGIN_ERROR, 
+    REQUEST_REGISTER,
+    REGISTER_SUCCESS,
+    REGISTER_ERROR,
     LOGOUT, 
     REQUEST_ORDERS,
     RECEIVE_ORDERS,
@@ -25,14 +28,28 @@ const loginSuccessful = json => ({
     payload: json
 })
 
-const loginError = json => ({
+const loginError = message => ({
     type: LOGIN_ERROR,
-    payload: json
+    payload: message
 })
 
 const logout = () => ({
     type: LOGOUT
 })
+
+const requestRegister = ()=> ({
+    type: REQUEST_REGISTER
+})
+
+const registerSuccess = json => ({
+    type: REGISTER_SUCCESS,
+    payload: json
+})
+
+const registerError = message => ({
+    type: REGISTER_ERROR,
+    payload: message
+}) 
 
 
 export const signIn = data => dispatch => {
@@ -57,6 +74,28 @@ export const signIn = data => dispatch => {
             console.log('Got user error:', response);
             dispatch(loginError(response.message));
         })
+}
+
+export const registerUser = data => dispatch => {
+    dispatch(requestRegister());
+
+    return axios({
+        url: REGISTER_ENDPOINT,
+        timeout: 20000,
+        method: 'POST',
+        data: data,
+        responseType: 'json'
+    })
+        .then( response => {
+            console.log('Got user', response);
+            dispatch(registerSuccess(response.data));
+        })
+
+        .catch( response => {
+            console.log('Got user error:', response);
+            dispatch(registerError(response.message));
+        })
+
 }
 
 export const signOut = dispatch => {
