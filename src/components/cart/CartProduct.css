@@ -12,6 +12,7 @@
     margin: 10px 10px;
     overflow: hidden;
     display: flex;
+    height: 70%;
 }
 
 .cart-item-img {
@@ -43,6 +44,8 @@
 
 .cart-item-description-view {
     padding: 10px;
+    height: 20%;
+    overflow: hidden;
 }
 
 .cart-item-description-text {

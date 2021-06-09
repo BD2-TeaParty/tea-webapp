@@ -1,5 +1,5 @@
-import { Accordion, AccordionDetails, AccordionSummary, Typography, withStyles } from '@material-ui/core';
-import React from 'react';
+import { Accordion, AccordionDetails, AccordionSummary, Button, Typography, withStyles } from '@material-ui/core';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import './UserPage.css';
@@ -7,7 +7,9 @@ import Wishlist from './Wishlist';
 
 const CustomAccordion = withStyles( () => ({
     root: {
-        width: '80%',
+        marginTop: 10,
+        width: '75%',
+        // height: '15%',
         background: 'rgba(0,0,0,0)',
         textAlign: 'center',
         alignContent: 'center',
@@ -17,12 +19,12 @@ const CustomAccordion = withStyles( () => ({
         borderWidth: 1,
         borderRadius: 5,
         boxShadow: 'box-shadow: 10px 2px 10px 2px rgba(0,0,0,.2);',
-        marginTop: '20px',
+        // marginTop: '20px',
         
     },
     expanded: {
-        width: '80%',
-        height: 500,
+    //     // width: '100%',
+        height: '50%',
     }
 }))(Accordion);
 
@@ -30,17 +32,24 @@ const CustomAccordion = withStyles( () => ({
 
 const UserPage = props => {
 
+
+    const [expanded, setExpanded] = useState('');
+
+    const handleChange = (panel) => (event, newExpanded) => {
+        setExpanded(newExpanded ? panel : false);
+    }
+
     const welcomeMsg = `Witaj >>>${props.user.name}<<<`;
     return (
-        <section id='user-page' className='user-page-container'>
-            <div id='user-panel' className='user-page-panel'>
+        <div id='user-page' className='user-page'>
+            {/* <div id='user-panel' className='user-page-panel'>
 
                 <div id='user-panel-title-view' className='user-page-panel-title-view'>
                     <Typography className='user-page-panel-title'>{welcomeMsg}</Typography>
                 </div>
 
                 <div id='user-panel-content' className='user-page-panel-content'>
-                    <CustomAccordion variant='outlined'>
+                    <CustomAccordion variant='outlined' expanded={expanded == 'wishlist'} onChange={handleChange('wishlist')}>
                         <AccordionSummary className='user-page-panel-accordion-summary' >
                             <Typography>Lista Życzeń</Typography>
                         </AccordionSummary>
@@ -48,7 +57,7 @@ const UserPage = props => {
                             <Wishlist items={props.wishlist}/>
                         </AccordionDetails>
                     </CustomAccordion>
-                    <CustomAccordion variant='outlined'>
+                    <CustomAccordion variant='outlined' expanded={expanded == 'orders'} onChange={handleChange('orders')}>
                         <AccordionSummary >
                             <Typography>Zamówienia</Typography>
                         </AccordionSummary>
@@ -57,11 +66,16 @@ const UserPage = props => {
                         <AccordionSummary >
                             <Typography>Xd</Typography>
                         </AccordionSummary>
-                    </CustomAccordion> 
+                    </CustomAccordion>  *
+                    
                 </div>
-                
-            </div>
-        </section>
+                <div id='user-panel-end' className='user-page-panel-logout'>
+                    <Button>
+                        <Typography>Wyloguj</Typography>
+                    </Button>
+                </div>
+            </div> */}
+        </div>
     )
 }
 

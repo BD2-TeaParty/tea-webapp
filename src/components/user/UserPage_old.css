@@ -1,0 +1,69 @@
+
+.user-page-container {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    /* align-content: center; */
+    flex-direction: column;
+}
+
+.user-page-panel {
+    width: 70%;
+    height: 100%;
+    margin: 25px 0px;
+    overflow: hidden;
+    box-shadow: 0px 2px 10px 2px rgba(0,0,0,.2);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-content: space-between; */
+}
+
+.user-page-panel-title-view {
+    height: 20%;
+    width: 100%;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    border: 1px solid;
+}
+.user-page-panel-title {
+    font-size: 2rem !important;
+    color: #555;
+    text-align: center;
+    /* vertical-align: middle; */
+
+}
+
+.user-page-panel-content {
+    display: flex;
+    height: 70%;
+    width: 100%;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.user-page-panel-accordion-summary {
+    text-align: center;
+    flex: 1;
+    align-items: center;
+}
+
+.user-page-panel-logout {
+    align-items: center;
+    /* align-self: flex-end; */
+    height: 10%;
+    width: 100%;
+    /* display: flex; */
+    /* justify-content: center; */
+}
+.user-page-panel-logout button {
+    background-color: seagreen;
+    color: #fff;
+    
+}

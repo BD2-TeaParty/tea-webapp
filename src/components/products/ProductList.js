@@ -31,7 +31,7 @@ const ProductList = props => {
                 props.fetchProducts(`${PRODUCTS_ENDPOINT}all`);
                 break;
         }
-    }, [props, props.type])
+    }, [props.type])
 
 
     const cartCallback = id => {

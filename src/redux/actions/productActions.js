@@ -35,7 +35,7 @@ export const fetchProducts = url => dispatch => {
 
     setTimeout( () => {
         dispatch(receiveTest());
-    }, 100);
+    }, 1000);
     /*return axios({
         url: url,
         timeout: 10000,
