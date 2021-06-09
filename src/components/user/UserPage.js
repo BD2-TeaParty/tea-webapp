@@ -21,8 +21,6 @@ const CustomAccordion = withStyles( () => ({
         
     },
     expanded: {
-        // background: 'rgba(1,1,1,0.5)',
-        // color: '#fff',
         width: '80%',
         height: 500,
     }

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
-import img1 from '../../assets/t1.jpg';
 import './ProductPanel.css';
 
 const ProductPanel = props => {
@@ -14,7 +13,7 @@ const ProductPanel = props => {
 
         <GridListTile key={props.id} className='gridlist-item'>
 
-            <img src={props.img} className='product-panel-image'/>
+            <img src={props.img} alt={props.title} className='product-panel-image'/>
 
             <Typography className='product-panel-title-text' variant='h6'>{props.title}</Typography>
             
@@ -32,7 +31,6 @@ const ProductPanel = props => {
 
             </div>
         </GridListTile> 
-        // {/* </div> */}
     )
 }
 

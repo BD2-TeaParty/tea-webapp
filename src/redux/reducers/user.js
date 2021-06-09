@@ -14,9 +14,13 @@ import { LOGOUT,
     REGISTER_SUCCESS,
     REGISTER_ERROR,
     REMOVE_FROM_WISHLIST,
+    ADD_TO_WISHLIST,
 } from '../constants/userTypes';
 
 const initialState = {
+
+    isLoggedIn: false,
+    
     user: { id: "", name: "Anonim"},
     address: { city: "", street: "", streetNo: "", houseNo: ""},
     userLoading: false,

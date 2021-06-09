@@ -2,12 +2,10 @@ import { GridListTile, IconButton, Typography } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
 import './CartProduct.css';
-// import { Remove } from 'material-ui-icons';
 
 const CartProduct = props => {
 
@@ -19,7 +17,7 @@ const CartProduct = props => {
 
         <GridListTile key={props.item.id} className='cart-gridlist-item '>
 
-            <img src={props.item.img} className='cart-item-img'/>
+            <img src={props.item.img} alt={props.item.title} className='cart-item-img'/>
 
             <div className='cart-item-title-view '>
                 <Typography variant='h6' className='cart-item-title'>{props.item.title}</Typography>

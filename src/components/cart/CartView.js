@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { addItem, removeItem, decreaseItem, increaseItem } from '../../redux/actions/cartActions';
 import './CartView.css';
 import NotInterestedIcon from '@material-ui/icons/NotInterested';
-import ProductPanel from '../products/ProductPanel';
 import CartProduct from './CartProduct';
 
 

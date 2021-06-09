@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import axios from "axios";
 import { 
     REQUEST_PRODUCTS, 
@@ -11,11 +12,13 @@ const requestProducts = () => ({
     type: REQUEST_PRODUCTS,
 })
 
+// eslint-disable-next-line
 const receiveProducts = json => ({
     type: RECEIVE_PRODUCTS,
     payload: json
 })
 
+// eslint-disable-next-line
 const receiveProductsError = json => ({
     type: RECEIVE_PRODUCTS_ERROR,
     payload: json,
@@ -32,7 +35,7 @@ export const fetchProducts = url => dispatch => {
 
     setTimeout( () => {
         dispatch(receiveTest());
-    }, 1000);
+    }, 100);
     /*return axios({
         url: url,
         timeout: 10000,

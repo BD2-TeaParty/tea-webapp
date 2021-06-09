@@ -1,4 +1,4 @@
-import { GridList, GridListTile, LinearProgress, Typography } from "@material-ui/core";
+import { GridList, LinearProgress, Typography } from "@material-ui/core";
 import { useEffect } from "react"
 import { connect } from "react-redux"
 import { PRODUCTS_ENDPOINT } from "../../util/ApiLinks";
@@ -31,7 +31,7 @@ const ProductList = props => {
                 props.fetchProducts(`${PRODUCTS_ENDPOINT}all`);
                 break;
         }
-    }, [props.type])
+    }, [props, props.type])
 
 
     const cartCallback = id => {
