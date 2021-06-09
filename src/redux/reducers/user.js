@@ -13,10 +13,11 @@ import { LOGOUT,
     REQUEST_REGISTER,
     REGISTER_SUCCESS,
     REGISTER_ERROR,
+    REMOVE_FROM_WISHLIST,
 } from '../constants/userTypes';
 
 const initialState = {
-    user: { id: "", name: ""},
+    user: { id: "", name: "Anonim"},
     address: { city: "", street: "", streetNo: "", houseNo: ""},
     userLoading: false,
     userError: false,
@@ -26,7 +27,15 @@ const initialState = {
     ordersLoading: false,
     ordersError: false,
 
-    wishlist: [],
+    wishlist: [
+        {
+            id: 123, //id pozwala oberjzec przedmiot pod adresem typu teashop.pl/products?id=12387481762
+            title: 'sadfas',
+            description: 'ahfhafdahfd',
+            img: 'https://static.biotea.it/1593-large_default/display-foglie-te-in-bambu.jpg',
+            price: 100.0,
+        },
+    ],
     isLoading: false,
     error: false,
 }
@@ -133,6 +142,16 @@ export const userReducer = (state = initialState, action) => {
                 wishlist: [],
                 isLoading: false,
                 error: true,
+            }
+        case ADD_TO_WISHLIST:
+            return {
+                ...state,
+                wishlist: [...state.wishlist, action.payload]
+            }
+        case REMOVE_FROM_WISHLIST: 
+            return {
+                ...state,
+                wishlist: [...state.wishlist.slice(0, action.payload), ...state.wishlist.slice(action.payload + 1)]
             }
         default:
             return state;

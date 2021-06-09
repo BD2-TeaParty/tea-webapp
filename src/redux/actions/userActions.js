@@ -14,6 +14,7 @@ import {
     REQUEST_WISHLIST,
     RECEIVE_WISHLIST,
     RECEIVE_WISHLIST_ERROR,
+    ADD_TO_WISHLIST,
 } from '../constants/userTypes';
 import store from '../store';
 
@@ -190,3 +191,8 @@ export const fetchWishlist = dispatch => {
         })
 }
 
+
+export const addToWishlist = item => dispatch => {
+
+    return dispatch({ type: ADD_TO_WISHLIST, payload: item});
+}

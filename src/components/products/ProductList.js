@@ -7,6 +7,7 @@ import { fetchProducts } from '../../redux/actions/productActions';
 import './ProductList.css';
 import ProductPanel from "./ProductPanel";
 import { addItem } from "../../redux/actions/cartActions";
+import { addToWishlist } from "../../redux/actions/userActions";
 
 const ProductList = props => {
 
@@ -40,6 +41,20 @@ const ProductList = props => {
         props.addItem(item);
     }
 
+    const wishlistCallback = id => {
+        const item = props.products.find( product => product.id === id);
+
+        const wishlistJson = {
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            price: item.price,
+            img: item.img
+        }
+
+        props.addToWishlist(wishlistJson);
+    }
+    
     const getProductStatus = () => {
 
         const loading = 'Ładowanie produktów...';
@@ -69,7 +84,7 @@ const ProductList = props => {
                         <GridList  className='gridlist' >
                             {props.products.map( (product) => ( 
                                
-                                    <ProductPanel {...product} cartCallback={cartCallback}/>
+                                    <ProductPanel {...product} cartCallback={cartCallback} wishlistCallback={wishlistCallback}/>
                                 // </GridListTile>
                             ))}
                         </GridList>
@@ -93,4 +108,4 @@ const mapStateToProps = (state, ownProps) => {
 
 
 
-export default connect(mapStateToProps, { fetchProducts, addItem })(ProductList);
+export default connect(mapStateToProps, { fetchProducts, addItem, addToWishlist })(ProductList);

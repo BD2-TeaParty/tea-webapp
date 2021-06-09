@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './UserPage.css';
+import Wishlist from './Wishlist';
 
 const CustomAccordion = withStyles( () => ({
     root: {
@@ -46,7 +47,7 @@ const UserPage = props => {
                             <Typography>Lista Życzeń</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Typography>Xd</Typography>
+                            <Wishlist items={props.wishlist}/>
                         </AccordionDetails>
                     </CustomAccordion>
                     <CustomAccordion variant='outlined'>
