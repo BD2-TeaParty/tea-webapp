@@ -34,9 +34,6 @@ const GuestPanel = props => {
 
     const notLoggedIn = 'Nie jesteś zalogowany!'
 
-    const [loginExpanded, setLoginExpanded] = useState(false);
-    const [registerExpanded, setRegisterExpanded] = useState(false);
-
     const [loginSubmitClicked, setLoginSubmitClicked] = useState(true);
     const [registerPasswordError, setRegisterPasswordError] = useState(false);
     const [registerHelperText, setRegisterHelperText] = useState('');
@@ -50,6 +47,11 @@ const GuestPanel = props => {
     const registerPassword = useRef();
     const registerRepeatPassword = useRef();
 
+    const [expanded, setExpanded] = useState('login');
+
+    const handleChange = (panel) => (event, newExpanded) => {
+        setExpanded(newExpanded ? panel : false);
+    }
 
     const submitLogin = () => {
         const loginJson = {}
@@ -94,26 +96,6 @@ const GuestPanel = props => {
         setRegisterPasswordError(false);
         setRegisterHelperText('');
     }
-    const toggleLogin = () => {
-        if (loginExpanded && !registerExpanded ) {
-            setLoginExpanded(false);
-        } else if (!loginExpanded && registerExpanded) {
-            setRegisterExpanded(false);
-            setLoginExpanded(true);
-        } else 
-            setLoginExpanded(true);
-    }
-
-    const toggleRegister = () => {
-        if (registerExpanded && !loginExpanded) {
-            setRegisterExpanded(false);
-        } else if (!registerExpanded && loginExpanded) {
-            setLoginExpanded(false);
-            setRegisterExpanded(true);
-        } else
-            setRegisterExpanded(true);
-    }
-
 
     return (
         <section id='login-panel-papa' className='login-container'>
@@ -125,9 +107,9 @@ const GuestPanel = props => {
 
                     {props.userLoading ? <CircularProgress /> : null}
 
-                     <CustomAccordion variant='outlined' expanded={loginExpanded} >
+                     <CustomAccordion variant='outlined' expanded={expanded == 'login'} onChange={handleChange('login')} >
 
-                        <AccordionSummary onClick={ () => toggleLogin()}>
+                        <AccordionSummary >
                             <Typography style={{textAlign: 'center', flex: 1, fontWeight: 600}}>ZALOGUJ SIĘ</Typography>
                         </AccordionSummary>
 
@@ -140,14 +122,13 @@ const GuestPanel = props => {
                                 ? <Typography style={{color: 'red', fontSize: '0.75rem'}}>{props.errorMessage}</Typography>
                                 : null 
                             }
-
                         </AccordionDetails>
                     </CustomAccordion>
 
 
-                    <CustomAccordion variant='outlined' expanded={registerExpanded} >
+                    <CustomAccordion variant='outlined' expanded={expanded == 'register'} onChange={handleChange('register')} >
 
-                        <AccordionSummary onClick={ () => toggleRegister()} >
+                        <AccordionSummary  >
                             <Typography style={{textAlign: 'center', flex: 1, fontWeight: 600}}>ZAREJESTRUJ SIĘ</Typography>
                         </AccordionSummary>
 
@@ -166,7 +147,6 @@ const GuestPanel = props => {
                                 ? <Typography style={{color: 'red', fontSize: '0.75rem'}}>{props.errorMessage}</Typography>
                                 : null 
                             }
-                            
                         </AccordionDetails>
                     </CustomAccordion>
 
