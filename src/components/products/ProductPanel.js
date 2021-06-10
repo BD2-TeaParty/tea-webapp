@@ -8,7 +8,7 @@ import './ProductPanel.css';
 
 const ProductPanel = props => {
 
-    console.log('\nproduct panel ', props);
+    //console.log('\nproduct panel ', props);
     return (
 
         <GridListTile key={props.id} className='gridlist-item'>
@@ -22,7 +22,7 @@ const ProductPanel = props => {
             </div>
 
             <div className='product-panel-bottom-bar'>
-                <IconButton className='product-panel-icon' >
+                <IconButton className='product-panel-icon' onClick={ () => props.wishlistCallback(props.id)}>
                     <FavoriteIcon style={{color: '#d50000'}}/>
                 </IconButton>
                 <IconButton className='product-panel-icon' onClick={ () => props.cartCallback(props.id)}>

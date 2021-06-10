@@ -7,7 +7,8 @@ import { fetchProducts } from '../../redux/actions/productActions';
 import './ProductList.css';
 import ProductPanel from "./ProductPanel";
 import { addItem } from "../../redux/actions/cartActions";
-import { addToWishlist } from "../../redux/actions/userActions";
+import { addToWishlist, removeFromWishlist } from "../../redux/actions/userActions";
+import { selectIdsFromWishlist } from "../../redux/selectors/user";
 
 const ProductList = props => {
 
@@ -35,24 +36,26 @@ const ProductList = props => {
 
 
     const cartCallback = id => {
-        // console.log('cartCallback with index ', index);
         const item = props.products.find( product => product.id === id);
-        // console.log('cartCallback with item:', item);
         props.addItem(item);
     }
 
     const wishlistCallback = id => {
-        const item = props.products.find( product => product.id === id);
 
-        const wishlistJson = {
-            id: item.id,
-            title: item.title,
-            description: item.description,
-            price: item.price,
-            img: item.img
-        }
+        const itemIndex = props.wishlistItems.findIndex(item => item === id);
 
-        props.addToWishlist(wishlistJson);
+        if (itemIndex === -1) {
+            const item = props.products.find( product => product.id === id);
+            const wishlistJson = {
+                id: item.id,
+                title: item.title,
+                description: item.description,
+                price: item.price,
+                img: item.img
+            }
+            props.addToWishlist(wishlistJson);
+        
+        } else props.removeFromWishlist(itemIndex);
     }
     
     const getProductStatus = () => {
@@ -85,7 +88,6 @@ const ProductList = props => {
                             {props.products.map( (product) => ( 
                                
                                     <ProductPanel {...product} cartCallback={cartCallback} wishlistCallback={wishlistCallback}/>
-                                // </GridListTile>
                             ))}
                         </GridList>
                     </div>
@@ -103,9 +105,10 @@ const mapStateToProps = (state, ownProps) => {
         products: state.productReducer.data,
         isLoading: state.productReducer.isLoading,
         error: state.productReducer.error,
+        wishlistItems: selectIdsFromWishlist(state),
     }
 }
 
 
 
-export default connect(mapStateToProps, { fetchProducts, addItem, addToWishlist })(ProductList);
+export default connect(mapStateToProps, { fetchProducts, addItem, addToWishlist, removeFromWishlist })(ProductList);
