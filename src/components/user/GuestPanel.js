@@ -107,7 +107,7 @@ const GuestPanel = props => {
 
                     {props.userLoading ? <CircularProgress /> : null}
 
-                     <CustomAccordion variant='outlined' expanded={expanded == 'login'} onChange={handleChange('login')} >
+                     <CustomAccordion variant='outlined' expanded={expanded === 'login'} onChange={handleChange('login')} >
 
                         <AccordionSummary >
                             <Typography style={{textAlign: 'center', flex: 1, fontWeight: 600}}>ZALOGUJ SIĘ</Typography>
@@ -126,7 +126,7 @@ const GuestPanel = props => {
                     </CustomAccordion>
 
 
-                    <CustomAccordion variant='outlined' expanded={expanded == 'register'} onChange={handleChange('register')} >
+                    <CustomAccordion variant='outlined' expanded={expanded === 'register'} onChange={handleChange('register')} >
 
                         <AccordionSummary  >
                             <Typography style={{textAlign: 'center', flex: 1, fontWeight: 600}}>ZAREJESTRUJ SIĘ</Typography>

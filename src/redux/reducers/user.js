@@ -38,6 +38,7 @@ const initialState = {
             description: 'ahfhafdahfd',
             img: 'https://static.biotea.it/1593-large_default/display-foglie-te-in-bambu.jpg',
             price: 100.0,
+            date: new Date(),
         },
     ],
     isLoading: false,
