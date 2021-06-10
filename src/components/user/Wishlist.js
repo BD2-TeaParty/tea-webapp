@@ -1,7 +1,9 @@
-import { FixedSizeList as List } from 'react-window';
 import React from 'react'
 import { Typography } from '@material-ui/core';
+import { FixedSizeList as List } from 'react-window';
+import { connect } from 'react-redux';
 
+import './Wishlist.css';
 
 const Wishlist = props => {
 
@@ -19,19 +21,24 @@ const Wishlist = props => {
 
 
 
-
     return (
-        <List
-            height={800}
-            width={500}
-            itemCount={props.items.length}
-            itemData={props.items}
-            itemSize={60}>
-                {WishlistItem}
-        </List>
+        <div className='user-wishlist-container'>
+            <List
+                height={800}
+                width={500}
+                itemCount={props.items.length}
+                itemData={props.items}
+                itemSize={60}>
+                    {WishlistItem}
+            </List>
+        </div>
     )
 }
 
 
-
-export default Wishlist;
+const mapStateToProps = (state) => {
+    return {
+        items: state.userReducer.wishlist,
+    }
+}
+export default connect(mapStateToProps)(Wishlist);
