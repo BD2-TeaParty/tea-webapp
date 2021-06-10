@@ -8,20 +8,17 @@ import { removeFromWishlist } from '../../redux/actions/userActions';
 
 const Wishlist = props => {
 
-    // console.log(new Date().toISOString());
-
+    const noItemsMsg = 'Brak przedmiotów na liście życzeń!';
     const [sortedData, setSortedData] = useState([]);
     const [sortMethod, setSortMethod] = useState('oldest-first');
+
     const wishlistCallback = id => {
         const index = props.items.findIndex(obj => obj.id === id);
 
         props.removeFromWishlist(index);
     }
-    // console.log('wishlist props', props);
-    const handleChange = event => {
-        // const name = event.target.name;
-        setSortMethod(event.target.value);
-    }
+
+    const handleChange = event => { setSortMethod(event.target.value); }
 
     const sortWishlist = () => {
 
@@ -100,7 +97,7 @@ const Wishlist = props => {
                     </NativeSelect>
                 </FormControl>
             </div>
-
+            {sortedData.length ?
             <List
                 height={800}
                 width={800}
@@ -109,6 +106,9 @@ const Wishlist = props => {
                 itemSize={100}>
                     {WishlistItem}
             </List>
+            :
+            <Typography className='message'>{noItemsMsg}</Typography>
+            }
         </div>
     )
 }

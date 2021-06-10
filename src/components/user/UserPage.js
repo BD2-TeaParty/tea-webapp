@@ -8,6 +8,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import Wishlist from './Wishlist';
 
 import './UserPage.css';
+import Orders from './Orders';
 
 
 
@@ -20,6 +21,10 @@ const UserPage = props => {
     // console.log('Switched to', userView)
     const UserContent = () => {
         switch (userView) {
+            case 'orders':
+                return (
+                    <Orders />
+                )
             case 'wishlist':
                 return (
                     <Wishlist />
