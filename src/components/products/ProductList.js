@@ -51,7 +51,8 @@ const ProductList = props => {
                 title: item.title,
                 description: item.description,
                 price: item.price,
-                img: item.img
+                img: item.img,
+                date: `${new Date().toISOString().split('T')[0]}`,
             }
             props.addToWishlist(wishlistJson);
         
