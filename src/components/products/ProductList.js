@@ -1,5 +1,5 @@
 import { GridList, LinearProgress, Typography } from "@material-ui/core";
-import { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { PRODUCTS_ENDPOINT } from "../../util/ApiLinks";
 import * as types from '../../util/fetchTypes';
@@ -9,10 +9,20 @@ import ProductPanel from "./ProductPanel";
 import { addItem } from "../../redux/actions/cartActions";
 import { addToWishlist, removeFromWishlist } from "../../redux/actions/userActions";
 import { selectIdsFromWishlist } from "../../redux/selectors/user";
+import WishlistToast from "../user/WishlistToast";
 
 const ProductList = props => {
 
     // console.log('\nProductList::\n', props);
+    const toastAdd = 'Dodano do listy życzeń';
+    const toastRemove = 'Usunięto z listy życzeń';
+    const [toastOpen, setToastOpen] = useState('');
+    const handleClose = (event, reason) => {
+        if (reason ==='clickaway') return;
+
+        setToastOpen('');
+    }
+
     
     useEffect( () => {
         switch (props.type) {
@@ -55,8 +65,11 @@ const ProductList = props => {
                 date: new Date(),
             }
             props.addToWishlist(wishlistJson);
-        
-        } else props.removeFromWishlist(itemIndex);
+            setToastOpen('add');
+        } else {
+            props.removeFromWishlist(itemIndex);
+            setToastOpen('remove');
+        }
     }
     
     const getProductStatus = () => {
@@ -91,6 +104,9 @@ const ProductList = props => {
                                     <ProductPanel {...product} cartCallback={cartCallback} wishlistCallback={wishlistCallback}/>
                             ))}
                         </GridList>
+
+                        <WishlistToast text={toastAdd} open={toastOpen} onClose={handleClose} type='add' />
+                        <WishlistToast text={toastRemove} open={toastOpen} onClose={handleClose} type='remove' />
                     </div>
                 )
             }
