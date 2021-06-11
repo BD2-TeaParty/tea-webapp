@@ -1,7 +1,15 @@
 .user-wishlist-container {
     width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;   
 }
-
+.user-wishlist-container .top {
+    height: 15%;
+}
+.user-wishlist-container .bottom {
+    height: 85%;
+}
 
 .user-wishlist-container-item {
     height: 95%;

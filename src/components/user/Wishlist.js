@@ -79,6 +79,7 @@ const Wishlist = props => {
 
     return (
         <div className='user-wishlist-container'>
+            <div className='top'>
             <Typography className='title'>Lista życzeń</Typography>
             <div className='sort-div'>
                 <Typography className='sort-text'>Sortuj:</Typography>
@@ -97,8 +98,10 @@ const Wishlist = props => {
                     </NativeSelect>
                 </FormControl>
             </div>
+            </div>
             {sortedData.length ?
             <List
+                className='bottom'
                 height={800}
                 width={800}
                 itemCount={sortedData.length}

@@ -9,6 +9,7 @@ import Wishlist from './Wishlist';
 
 import './UserPage.css';
 import Orders from './Orders';
+import Returns from './Returns';
 
 
 
@@ -28,6 +29,10 @@ const UserPage = props => {
             case 'wishlist':
                 return (
                     <Wishlist />
+                )
+            case 'returns':
+                return (
+                    <Returns />
                 )
             default:
                 return (
