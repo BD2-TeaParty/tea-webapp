@@ -1,31 +1,42 @@
+// eslint-disable-next-line
 import axios from "axios";
 import { 
     REQUEST_PRODUCTS, 
     RECEIVE_PRODUCTS, 
-    RECEIVE_PRODUCTS_ERROR 
-} from "../constants/actionTypes"
+    RECEIVE_PRODUCTS_ERROR, 
+    RECEIVE_PRODUCTS_TEST
+} from "../constants/productTypes"
 
 
 const requestProducts = () => ({
     type: REQUEST_PRODUCTS,
 })
 
+// eslint-disable-next-line
 const receiveProducts = json => ({
     type: RECEIVE_PRODUCTS,
     payload: json
 })
 
+// eslint-disable-next-line
 const receiveProductsError = json => ({
     type: RECEIVE_PRODUCTS_ERROR,
     payload: json,
 })
 
+const receiveTest = () => ({
+    type: RECEIVE_PRODUCTS_TEST
+})
+
 export const fetchProducts = url => dispatch => {
     //zalozenie ze w komponentach wolamy get z odpowiednim zapytaniem np ?tea ?coffee ?accessories 
 
-    dispatch(requestProducts);
-    
-    return axios({
+    dispatch(requestProducts());
+
+    setTimeout( () => {
+        dispatch(receiveTest());
+    }, 100);
+    /*return axios({
         url: url,
         timeout: 10000,
         method: 'GET',
@@ -40,5 +51,5 @@ export const fetchProducts = url => dispatch => {
         .catch( response => {
             console.log('Got products error:', response);
             dispatch(receiveProductsError(response.data));
-        })
+        })*/
 }

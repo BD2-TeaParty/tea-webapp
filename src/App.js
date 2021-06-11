@@ -1,17 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
-import Button from '@material-ui/core/Button';
-import { Typography } from '@material-ui/core';
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Navbar from './components/navbar/Navbar';
+import ProductList from './components/products/ProductList';
+import CartView from './components/cart/CartView';
+import UserView from './components/user/UserView';
+
 function App() {
-  return (
-        <div className="App">
-            <header className="App-header">
+    return (
 
-                <Typography style={{color: '#fff'}}> XD </Typography>
+        <Router>
+            <div className='container'>
+                <Navbar />
 
-            </header>
-        </div>
-  );
+                <div className='content-container'>
+                <Switch>
+                    <Route exact path='/'>
+                        <ProductList type='all'/>
+                    </Route>
+                    <Route path='/tea'>
+                        <ProductList type='tea' />
+                    </Route>
+                    <Route path='/cart'>
+                        <CartView />
+                    </Route>
+                    <Route path='/user'>
+                        <UserView />
+                    </Route>
+                </Switch>
+                </div>
+            </div>
+        </Router>
+    );
 }
 
 export default App;

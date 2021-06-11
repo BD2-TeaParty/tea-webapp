@@ -1,0 +1,10 @@
+
+.user-returns-container {
+    width: 75%;
+    margin-left: 20px;
+}
+
+.user-returns-container .title {
+    font-size: 2rem;
+}
+

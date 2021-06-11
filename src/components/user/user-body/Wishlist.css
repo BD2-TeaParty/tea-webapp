@@ -1,0 +1,96 @@
+.user-wishlist-container {
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;   
+}
+.user-wishlist-container .top {
+    height: 15%;
+}
+.user-wishlist-container .bottom {
+    height: 85%;
+}
+
+.user-wishlist-container-item {
+    height: 95%;
+    width: 95% !important;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    margin-left: 5px;
+}
+
+.user-wishlist-container-item .index {
+    font-size: 1rem;
+    width: 3%;
+    text-align: center;
+    margin-top: 5%;
+}
+.user-wishlist-container-item img {
+    height: 95%;
+    width: 15%;
+    object-fit: cover;
+    border-right: 1px solid #aaa;
+    margin-top: 0px;
+    box-shadow: 1px 1px 5px 1px rgba(0,0,0,.2);
+}
+
+.user-wishlist-container-item .text-div {
+    width: 72%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    
+}
+.user-wishlist-container-item .text-div .item-title {
+    font-size: 1.75rem;
+    margin: 0px 10px !important;
+
+}
+.user-wishlist-container-item .text-div .item-description {
+    font-size: 0.75rem;
+    margin: 0px 10px !important;
+}
+
+.user-wishlist-container-item .icon-div {
+    width: 10%;
+    height: 95%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-wishlist-container-item .icon-div svg {
+    width: 25px;
+    height: 25px;
+    color: #d50000;
+}
+
+.user-wishlist-container .title {
+    font-size: 2rem;
+    margin-left: 20px;
+}
+
+.user-wishlist-container .sort-div {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.user-wishlist-container .sort-text {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.user-wishlist-container .message {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-left: 20px;
+}

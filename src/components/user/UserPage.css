@@ -1,0 +1,43 @@
+.user-page {
+    height: 100%;
+    display: flex;
+    padding: 0px 15%;  
+    
+}
+
+.user-page-navigator {
+    width: 25%;
+    border-right: 1px solid #aaa;
+    flex-direction: column;
+}
+
+.user-page-body {
+    width: 75%;
+    /* border: 1px solid; */
+}
+
+
+.user-page-welcome-message {
+    padding: 20px 20px;
+    font-size: 2rem;
+}
+
+.user-page-navigator-buttons {
+    align-items: center;
+    height: 80%;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-page-navigator-buttons button {
+    width: 100%;
+    justify-content: flex-start !important;
+    padding: 10px 0 !important;
+    transition-duration: 0s !important;
+    border-radius: 0px !important;
+    border-bottom: 1px solid #ddd !important;
+}
+.user-page-navigator-buttons-typo {
+    margin-left: 15px !important;
+}

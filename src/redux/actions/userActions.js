@@ -1,9 +1,12 @@
 import axios from 'axios';
-import { LOGIN_ENDPOINT, ORDERS_ENDPOINT, WISHLIST_ENDPOINT } from '../../util/ApiLinks';
+import { LOGIN_ENDPOINT, ORDERS_ENDPOINT, REGISTER_ENDPOINT, WISHLIST_ENDPOINT } from '../../util/ApiLinks';
 import { 
     REQUEST_LOGIN, 
     LOGIN_SUCCESS, 
     LOGIN_ERROR, 
+    REQUEST_REGISTER,
+    REGISTER_SUCCESS,
+    REGISTER_ERROR,
     LOGOUT, 
     REQUEST_ORDERS,
     RECEIVE_ORDERS,
@@ -11,6 +14,8 @@ import {
     REQUEST_WISHLIST,
     RECEIVE_WISHLIST,
     RECEIVE_WISHLIST_ERROR,
+    ADD_TO_WISHLIST,
+    REMOVE_FROM_WISHLIST,
 } from '../constants/userTypes';
 import store from '../store';
 
@@ -25,20 +30,34 @@ const loginSuccessful = json => ({
     payload: json
 })
 
-const loginError = json => ({
+const loginError = message => ({
     type: LOGIN_ERROR,
-    payload: json
+    payload: message
 })
 
 const logout = () => ({
     type: LOGOUT
 })
 
+const requestRegister = ()=> ({
+    type: REQUEST_REGISTER
+})
+
+const registerSuccess = json => ({
+    type: REGISTER_SUCCESS,
+    payload: json
+})
+
+const registerError = message => ({
+    type: REGISTER_ERROR,
+    payload: message
+}) 
+
 
 export const signIn = data => dispatch => {
 
 
-    dispatch(requestLogin);
+    dispatch(requestLogin());
 
     return axios({
         url: LOGIN_ENDPOINT,
@@ -55,14 +74,36 @@ export const signIn = data => dispatch => {
 
         .catch( response => {
             console.log('Got user error:', response);
-            dispatch(loginError(response.data));
+            dispatch(loginError(response.message));
         })
+}
+
+export const registerUser = data => dispatch => {
+    dispatch(requestRegister());
+
+    return axios({
+        url: REGISTER_ENDPOINT,
+        timeout: 20000,
+        method: 'POST',
+        data: data,
+        responseType: 'json'
+    })
+        .then( response => {
+            console.log('Got user', response);
+            dispatch(registerSuccess(response.data));
+        })
+
+        .catch( response => {
+            console.log('Got user error:', response);
+            dispatch(registerError(response.message));
+        })
+
 }
 
 export const signOut = dispatch => {
     
     console.log('logging out');
-    dispatch(logout)
+    dispatch(logout())
 }
 
 
@@ -86,7 +127,7 @@ export const fetchOrders = dispatch => {
     const postJson = {
         userID: userID
     }
-    dispatch(requestOrders);
+    dispatch(requestOrders());
 
 
     return axios({
@@ -129,7 +170,7 @@ export const fetchWishlist = dispatch => {
     const postJson = {
         userID: userID
     }
-    dispatch(requestWishlist);
+    dispatch(requestWishlist());
 
 
     return axios({
@@ -151,3 +192,14 @@ export const fetchWishlist = dispatch => {
         })
 }
 
+
+export const addToWishlist = item => dispatch => {
+
+    
+    return dispatch({ type: ADD_TO_WISHLIST, payload: item});
+}
+
+export const removeFromWishlist = index => dispatch => {
+    
+    return dispatch({ type: REMOVE_FROM_WISHLIST, payload: index});
+}

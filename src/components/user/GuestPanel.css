@@ -1,0 +1,55 @@
+
+
+.login-container {
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid;  */
+    justify-content: center;
+    display: flex;
+}
+
+.login-panel {
+    margin-top: 5%;
+    width: 25%;
+    height: 80%;
+    /* border: 1px solid;  */
+    overflow: hidden;
+    box-shadow: 0px 2px 10px 2px rgba(0,0,0,.2);
+    
+    /* background-image: url(https://st3.depositphotos.com/16618412/18869/i/1600/depositphotos_188692286-stock-photo-beautiful-watercolor-illustration-green-tea.jpg); */
+    background-image: url(https://thumbs.dreamstime.com/z/green-tea-leaves-motion-sky-background-black-manu-postcard-vector-nature-natural-cosmetics-health-care-products-cup-120264539.jpg);
+    /* opacity: 0.1; */
+    /* background-image: rgba(0,0,0,0.1); */
+}
+
+.login-panel-title-view {
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center; */
+}
+
+.login-panel-title {
+    color: #555;
+    font-size: 1.75rem;
+    text-align: center;
+}
+
+.login-panel-content {
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-panel button {
+    margin: 5% 0;
+    width: 80%;
+    padding: 10px;
+    /* padding:  */
+}

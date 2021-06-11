@@ -1,5 +1,7 @@
 import {
     ADD_TO_CART,
+    DECREASE_QUANTITY,
+    INCREASE_QUANTITY,
     REMOVE_FROM_CART,
 } from '../constants/cartTypes';
 
@@ -15,11 +17,24 @@ const initialState = {
 export const cartReducer = (state = initialState, action) => {
 
     switch (action.type) {
-
         case ADD_TO_CART:
-            return {
-                ...state,
-                cartItems: [...state.cartItems, action.payload],
+            const index = state.cartItems.findIndex( cartObj => cartObj.item.id === action.payload.id);
+            console.log(action.payload.id);
+            console.log('koszyk przed:',state.cartItems, index);
+
+            if (index === -1) {
+                return {
+                    ...state,
+                    cartItems: [...state.cartItems, {item: action.payload, quantity: 1}],
+                }    
+            } else {
+                return {
+                    ...state,
+                    cartItems: state.cartItems.map((item, i) =>
+                        index === i
+                        ? { ...item, quantity: item.quantity + 1}
+                        : item) 
+                }
             }
         case REMOVE_FROM_CART:
             return {
@@ -28,6 +43,22 @@ export const cartReducer = (state = initialState, action) => {
                     ...state.cartItems.slice(0, action.payload),
                     ...state.cartItems.slice(action.payload+1)
                 ]
+            }
+        case INCREASE_QUANTITY:
+            return {
+                ...state,
+                cartItems: state.cartItems.map( (item, i) =>
+                        action.payload === i
+                        ? {...item, quantity: item.quantity + 1 }
+                        : item)
+            }
+        case DECREASE_QUANTITY:
+            return {
+                ...state,
+                cartItems: state.cartItems.map((item, i) =>
+                        action.payload === i
+                        ? { ...item, quantity: item.quantity - 1}
+                        : item) 
             }
         // case types.ADD_TO_CART_REQUEST:
         //     return {
