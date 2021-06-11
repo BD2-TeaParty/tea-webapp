@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PersonOutlineIcon from '@material-ui/icons/Person';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 
 import './UserRoutes.css';
@@ -16,11 +15,11 @@ const UserRoutes = () => {
                 <PersonOutlineIcon style={{ fontSize: 30 }}/>
             </Button>
 
-            <div className='wishlist-span'>
+            {/* <div className='wishlist-span'>
                 <Button component={Link} to='/user/wishlist' className='wishlist-button' >
                     <FavoriteBorderIcon style={{ fontSize: 15, color: '#d50000' }}/>
                 </Button>
-            </div>
+            </div> */}
 
             <div className='cart-div'>
             <Button component={Link} to='/cart' className='cart-button'>

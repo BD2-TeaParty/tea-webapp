@@ -1,15 +1,16 @@
-import {Button, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+
+import {Button, Typography } from '@material-ui/core';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 import SettingsIcon from '@material-ui/icons/Settings';
-import Wishlist from './Wishlist';
 
+import Wishlist from './user-body/Wishlist';
+import Orders from './user-body/Orders';
+import Returns from './user-body/Returns';
 import './UserPage.css';
-import Orders from './Orders';
-import Returns from './Returns';
 
 
 
@@ -18,7 +19,7 @@ const UserPage = props => {
 
     const welcomeMsg = `Witaj,`;
 
-    const [userView, setUserView] = useState('default');
+    const [userView, setUserView] = useState('orders');
     // console.log('Switched to', userView)
     const UserContent = () => {
         switch (userView) {

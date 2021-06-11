@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { FormControl, IconButton, NativeSelect, Typography } from '@material-ui/core';
 import { FixedSizeList as List } from 'react-window';
 import { connect } from 'react-redux';
+
+import { FormControl, IconButton, NativeSelect, Typography } from '@material-ui/core';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+
+import { removeFromWishlist } from '../../../redux/actions/userActions';
 import './Wishlist.css';
-import { removeFromWishlist } from '../../redux/actions/userActions';
 
 const Wishlist = props => {
 

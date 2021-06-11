@@ -29,7 +29,7 @@ const initialState = {
             c_origin: 'Chiny',
             description: 'Dobra herbatka czarrrrrrna z państwa środka. Zbiór Zima 2020.',
             weight: [0.1, 0.25, 0.5, 1], //zalozenie ze wszystko znormalizowane do KG
-            img: 'https://static.biotea.it/1593-large_default/display-foglie-te-in-bambu.jpg?auto=compress&cs=tinysrgb&h=350'
+            img: 'https://5.imimg.com/data5/MB/HT/MY-54316299/loose-natural-tea-leaves-500x500.jpg?auto=compress&cs=tinysrgb&h=350'
         },
         {
             id: 3,
@@ -38,7 +38,7 @@ const initialState = {
             c_origin: 'Chiny',
             description: 'Dobra herbatka czarrrAAAAAAAAArrrna z państwa środka. Zbiór Zima 2020.',
             weight: [0.1, 0.25, 0.5, 1], //zalozenie ze wszystko znormalizowane do KG
-            img: 'https://static.biotea.it/1593-large_default/display-foglie-te-in-bambu.jpg?auto=compress&cs=tinysrgb&h=350'
+            img: 'https://sevencups.com/files/2016/04/Picking-Standard-Monkey-picked-3-4-leaves-from-top.jpg?auto=compress&cs=tinysrgb&h=350'
         },
         {
             id: 4,
@@ -47,7 +47,7 @@ const initialState = {
             c_origin: 'Chiny',
             description: 'Dobra herbatka czarrrAAAAAAAAArrrna z państwa środka. Zbiór Zima 2020.',
             weight: [0.1, 0.25, 0.5, 1], //zalozenie ze wszystko znormalizowane do KG
-            img: 'https://static.biotea.it/1593-large_default/display-foglie-te-in-bambu.jpg?auto=compress&cs=tinysrgb&h=350'
+            img: 'https://thumbs.dreamstime.com/z/tea-leaves-3320184.jpg?auto=compress&cs=tinysrgb&h=350'
         },
         {
             id: 5,
