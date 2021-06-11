@@ -16,6 +16,7 @@ const ProductList = props => {
     // console.log('\nProductList::\n', props);
     const toastAdd = 'Dodano do listy życzeń';
     const toastRemove = 'Usunięto z listy życzeń';
+    const cartAdd = 'Dodano do koszyka';
     const [toastOpen, setToastOpen] = useState('');
     const handleClose = (event, reason) => {
         if (reason ==='clickaway') return;
@@ -48,6 +49,7 @@ const ProductList = props => {
     const cartCallback = id => {
         const item = props.products.find( product => product.id === id);
         props.addItem(item);
+        setToastOpen('cart');
     }
 
     const wishlistCallback = id => {
@@ -72,6 +74,9 @@ const ProductList = props => {
         }
     }
     
+    const isOnWishlist = id => {
+        return (props.wishlistItems.findIndex(item => item === id) > -1);
+    }
     const getProductStatus = () => {
 
         const loading = 'Ładowanie produktów...';
@@ -101,12 +106,13 @@ const ProductList = props => {
                         <GridList  className='gridlist' >
                             {props.products.map( (product) => ( 
                                
-                                    <ProductPanel {...product} cartCallback={cartCallback} wishlistCallback={wishlistCallback}/>
+                                    <ProductPanel {...product} cartCallback={cartCallback} wishlistCallback={wishlistCallback} isOnWishlist={isOnWishlist(product.id)}/>
                             ))}
                         </GridList>
 
                         <WishlistToast text={toastAdd} open={toastOpen} onClose={handleClose} type='add' />
                         <WishlistToast text={toastRemove} open={toastOpen} onClose={handleClose} type='remove' />
+                        <WishlistToast text={cartAdd} open={toastOpen} onClose={handleClose} type='cart' />
                     </div>
                 )
             }
