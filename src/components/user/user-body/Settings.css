@@ -1,0 +1,15 @@
+.user-settings-container {
+    width: 75%;
+    margin-left: 20px;
+}
+
+.user-settings-container .title {
+    font-size: 2rem;
+}
+
+.user-settings-container .sort-div {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    align-items: center;
+}

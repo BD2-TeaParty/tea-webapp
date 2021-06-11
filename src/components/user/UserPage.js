@@ -10,6 +10,8 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import Wishlist from './user-body/Wishlist';
 import Orders from './user-body/Orders';
 import Returns from './user-body/Returns';
+import Settings from './user-body/Settings';
+
 import './UserPage.css';
 
 
@@ -34,6 +36,10 @@ const UserPage = props => {
             case 'returns':
                 return (
                     <Returns />
+                )
+            case 'settings':
+                return (
+                    <Settings />
                 )
             default:
                 return (
