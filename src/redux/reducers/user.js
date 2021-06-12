@@ -15,6 +15,7 @@ import { LOGOUT,
     REGISTER_ERROR,
     REMOVE_FROM_WISHLIST,
     ADD_TO_WISHLIST,
+    PUSH_TEMP_ORDER,
 } from '../constants/userTypes';
 
 const initialState = {
@@ -43,6 +44,8 @@ const initialState = {
     ],
     isLoading: false,
     error: false,
+
+    tempOrders: [],
 }
 
 
@@ -157,6 +160,11 @@ export const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 wishlist: [...state.wishlist.slice(0, action.payload), ...state.wishlist.slice(action.payload + 1)]
+            }
+        case PUSH_TEMP_ORDER:
+            return {
+                ...state,
+                tempOrders: [...state.tempOrders, action.payload]
             }
         default:
             return state;

@@ -16,6 +16,7 @@ import {
     RECEIVE_WISHLIST_ERROR,
     ADD_TO_WISHLIST,
     REMOVE_FROM_WISHLIST,
+    PUSH_TEMP_ORDER,
 } from '../constants/userTypes';
 import store from '../store';
 
@@ -202,4 +203,9 @@ export const addToWishlist = item => dispatch => {
 export const removeFromWishlist = index => dispatch => {
     
     return dispatch({ type: REMOVE_FROM_WISHLIST, payload: index});
+}
+
+
+export const pushTempOrder = order => dispatch => {
+    return dispatch({type: PUSH_TEMP_ORDER, payload: order});
 }
