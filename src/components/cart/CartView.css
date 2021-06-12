@@ -70,11 +70,14 @@
     font-weight: 500;
 }
 
-.cart-container .cart-view .bottom button {
+.cart-container .cart-view .bottom .button {
+    width: 20%;
+    background-color: #4CAF50;
+    color: white;
     margin: 0px 5%;
-    padding: 20px 50px;
     min-height: 50px;
     height: 50%;
-    color: #fff;
-    background-color: green;
+}
+.cart-container .cart-view .bottom .button:hover{
+    background-color: #7CB342;
 }

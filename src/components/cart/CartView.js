@@ -1,13 +1,18 @@
-import { Button, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { addItem, removeItem, decreaseItem, increaseItem } from '../../redux/actions/cartActions';
-import './CartView.css';
-// import NotInterestedIcon from '@material-ui/icons/NotInterested';
-import CartProduct from './CartProduct';
+import { Link } from 'react-router-dom';
 import { FixedSizeList as List } from 'react-window';
 import AutoSizer from "react-virtualized-auto-sizer";
+
+import { Button, Typography } from '@material-ui/core';
+
+import { addItem, removeItem, decreaseItem, increaseItem } from '../../redux/actions/cartActions';
+import { pushTempOrder } from '../../redux/actions/userActions';
+
+import CartProduct from './CartProduct';
 import { calculatePrice } from './util/calculatePrice';
+import './CartView.css';
+
 
 const CartView = props => {
 
@@ -40,9 +45,20 @@ const CartView = props => {
             props.decreaseItem(index);
     }
     
+    const addToTempOrders = () => {
+        const tempOrder = {
+            date: new Date(),
+            items: [...props.cart],
+            price: price
+        }
+
+        // console.log('tymczasowe zamowienie', tempOrder);
+        props.pushTempOrder(tempOrder);
+    }
+
     const CartItem = ({index, style}) => {
         const obj = props.cart[index];
-        console.log('item:', obj)
+        // console.log('item:', obj)
         return (
             <CartProduct {...obj} index={index} style={style} 
                 cartCallback={removeCallback} 
@@ -52,8 +68,7 @@ const CartView = props => {
         )
     }
 
-
-
+    
 
     return (
         <div className='cart-container'>
@@ -85,8 +100,12 @@ const CartView = props => {
                         <Typography className='info'>{totalCost} </Typography>
                         <Typography className='price'>{price}zł</Typography>
                     </div>
-                    <Button>
-                        KUP TERAZ
+
+                    <Button component={Link} to='/order' 
+                        className='button' 
+                        onClick={ () => addToTempOrders()}
+                        disabled={!props.cart.length}>
+                            KUP TERAZ
                     </Button>
                 </div>
             </section>
@@ -103,4 +122,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { addItem, removeItem, decreaseItem, increaseItem })(CartView);
+export default connect(mapStateToProps, { addItem, removeItem, decreaseItem, increaseItem, pushTempOrder })(CartView);

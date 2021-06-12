@@ -5,6 +5,7 @@ import Navbar from './components/navbar/Navbar';
 import ProductList from './components/products/ProductList';
 import CartView from './components/cart/CartView';
 import UserView from './components/user/UserView';
+import OrderPage from './components/cart/OrderPage';
 
 function App() {
     return (
@@ -26,6 +27,9 @@ function App() {
                     </Route>
                     <Route path='/user'>
                         <UserView />
+                    </Route>
+                    <Route path='/order'>
+                        <OrderPage />
                     </Route>
                 </Switch>
                 </div>

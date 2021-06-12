@@ -11,7 +11,6 @@ const CartProduct = props => {
 
     const quantityMsg = 'W koszyku:';
     const removeMsg = 'Usuń z koszyka';
-    console.log(props);
     return (
         <div style={props.style} className='cart-product-container' >
             <Typography>{props.index}.</Typography>
