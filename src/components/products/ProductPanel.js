@@ -8,7 +8,7 @@ import './ProductPanel.css';
 
 const ProductPanel = props => {
 
-    console.log('\nproduct panel ', props);
+    // console.log('\nproduct panel ', props);
     return (
 
         <GridListTile key={props.id} className='gridlist-item'>
@@ -18,7 +18,7 @@ const ProductPanel = props => {
             <Typography className='product-panel-title-text' variant='h6'>{props.title}</Typography>
             
             <div className='product-panel-description'>
-                <Typography nowrap className='product-panel-description-text'>{props.description}</Typography>
+                <Typography nowrap='true' className='product-panel-description-text'>{props.description}</Typography>
             </div>
 
             <div className='product-panel-bottom-bar'>

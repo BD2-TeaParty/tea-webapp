@@ -1,18 +1,17 @@
-import { GridList, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import React from 'react';
 import { connect } from 'react-redux';
 import { addItem, removeItem, decreaseItem, increaseItem } from '../../redux/actions/cartActions';
 import './CartView.css';
-import NotInterestedIcon from '@material-ui/icons/NotInterested';
+// import NotInterestedIcon from '@material-ui/icons/NotInterested';
 import CartProduct from './CartProduct';
-
+import { FixedSizeList as List } from 'react-window';
 
 
 const CartView = props => {
 
 
     const emptyCart = 'Brak przedmiotów w koszyku.';
-    const cartMsg = 'Przedmioty w twoim koszyku';
 
     const removeCallback = id => {
         const index = props.cart.findIndex( cartObj => cartObj.item.id === id);
@@ -34,31 +33,49 @@ const CartView = props => {
             props.decreaseItem(index);
     }
     
-    if (props.cart && props.cart.length) {
+    const CartItem = ({index, style}) => {
+        const obj = props.cart[index];
+        console.log('item:', obj)
         return (
-            <div className='cart-container'>
-                <Typography className='cart-text' variant='h5'>{cartMsg}</Typography>
-                <GridList cols={3} cellHeight={300} className='cart-gridlist'>
-                    {props.cart.map( (product) => ( 
-                        <CartProduct {...product} 
-                            cartCallback={removeCallback} 
-                            addCallback={addQuantityCallback} 
-                            decreaseCallback={decreaseQuantityCallback} />
-                    ))}
-                </GridList>
-            </div>
-        )
-    } else {
-        return (
-            <div className='cart-container'>
-                <NotInterestedIcon style={{color: '#e53935', width: 100, height: 100}}/>
-                <Typography className='cart-text' variant='h5'>{emptyCart}</Typography>  
-            </div>
+            <CartProduct {...obj} index={index} style={style} 
+                cartCallback={removeCallback} 
+                addCallback={addQuantityCallback} 
+                decreaseCallback={decreaseQuantityCallback}
+            />
         )
     }
+
+
+
+
+    return (
+        <div className='cart-container'>
+            <section className='cart-view'>
+
+                <div className='top'>
+                    <Typography className='title'>Twój koszyk</Typography>
+                </div>
+
+                <div className='content'>
+                    <List
+                        className='list'
+                        height={800}
+                        width={800}
+                        itemCount={props.cart.length}
+                        itemData={props.cart}
+                        itemSize={100}
+                    >
+                            {CartItem}
+                    </List>
+                </div>
+
+                <div className='bottom'>
+                    <Typography>bottom</Typography>
+                </div>
+            </section>
+        </div>
+    )
 }
-
-
 
 
 
@@ -67,11 +84,6 @@ const mapStateToProps = (state) => {
         cart: state.cartReducer.cartItems
     }
 }
-
-
-
-
-
 
 
 export default connect(mapStateToProps, { addItem, removeItem, decreaseItem, increaseItem })(CartView);

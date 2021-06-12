@@ -1,65 +1,50 @@
 
-
-
-.cart-gridlist-item {
-    width: 22%;
-    /* min-height: 200px; */
-    box-shadow: 2px 2px 4px 2px rgba(0,0,0,.2);
-    padding: 0px;
-    /* margin-top: 10px; */
-    /* margin-bottom: 10px; */
-    border-radius: 10px;
-    margin: 10px 10px;
-    overflow: hidden;
+.cart-product-container {
+    height: 100px;
+    /* border: 1px solid #222; */
     display: flex;
-    height: 70%;
-}
-
-.cart-item-img {
-    width: 100%;
-    min-height: 200px;
-    max-height: 200px;
-    object-fit: cover;
-
-}
-
-.cart-item-quantity {
-    margin-left: 15px !important;
-}
-.cart-item-icon {
-    /* align-self: center; */
-    margin-right: 15px !important;
-    margin-bottom: 5px !important;
-    border-radius: 10px !important;
-}
-
-.cart-item-title-view {
-    padding: 10px;
-}
-.cart-item-title-text {
-    
-    text-align: center;
-    font-size: 1rem;
-}
-
-.cart-item-description-view {
-    padding: 10px;
-    height: 20%;
-    overflow: hidden;
-}
-
-.cart-item-description-text {
-    font-size: 0.5rem;
-}
-
-.cart-item-bottombar {
     align-items: center;
-    justify-content: space-between;
-    display: flex;
-    flex-direction: row;
-    justify-self: flex-end !important;
-}   
+}
 
-.cart-item-subadd {
-    margin-left: 10px;
+.cart-product-container img {
+    height: 90%;
+    width: 100px;
+    object-fit: cover;
+    border-right: 1px solid #aaa;
+    margin-top: 0px;
+    box-shadow: 1px 1px 5px 1px rgba(0,0,0,.2);
+}
+
+.cart-product-container .text-container {
+    margin-left: 2%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-product-container .text-container .title {
+    font-size: 1.5rem;
+}
+
+.cart-product-container .text-container .description {
+    font-size: 0.75rem;
+}
+
+
+.cart-product-container .quantity-container {
+    width: 25%;
+}
+
+.cart-product-container .remove-container {
+    width: 20%;
+
+}
+
+.cart-product-container .remove-container button {
+    border-radius: 0px !important;
+
+}
+.cart-product-container .remove-container button:hover {
+    /* border-radius: 0px !important; */
+    background-color: #ccc;
 }

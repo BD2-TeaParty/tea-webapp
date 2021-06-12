@@ -1,6 +1,5 @@
-import { GridListTile, IconButton, Typography } from '@material-ui/core';
 import React from 'react';
-import { connect } from 'react-redux';
+import { Typography, IconButton } from '@material-ui/core';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
@@ -12,22 +11,21 @@ const CartProduct = props => {
 
     const quantityMsg = 'W koszyku:';
     const removeMsg = 'Usuń z koszyka';
-
+    console.log(props);
     return (
+        <div className='cart-product-container'>
+            <Typography>{props.index}.</Typography>
+            <img src={props.item.img} alt={`${props.item.title}`} />
 
-        <GridListTile key={props.item.id} className='cart-gridlist-item '>
 
-            <img src={props.item.img} alt={props.item.title} className='cart-item-img'/>
-
-            <div className='cart-item-title-view '>
-                <Typography variant='h6' className='cart-item-title'>{props.item.title}</Typography>
+            <div className='text-container'>
+                <Typography className='title'>{props.item.title}</Typography>
+                <Typography className='description'>{props.item.description.substring(0,100) + '...'}</Typography>
             </div>
-            <div className='cart-item-description-view'>
-                <Typography className='cart-item-description-text'>{props.item.description}</Typography>
-            </div>
-            <Typography className='cart-item-quantity'>{quantityMsg} {props.quantity}</Typography>
-            <div className='cart-item-bottombar'>
-            <div className='cart-item-subadd'>
+
+
+            <div className='quantity-container'>
+                <Typography className='cart-item-quantity'>{quantityMsg} {props.quantity}</Typography>
                 <IconButton onClick={ () => props.decreaseCallback(props.item.id)}>
                     <RemoveIcon/>
                 </IconButton>
@@ -36,18 +34,17 @@ const CartProduct = props => {
                     <AddIcon />
                 </IconButton>
             </div>
-               
+
+            <div className='remove-container'>
                 <IconButton className='cart-item-icon' onClick={ () => props.cartCallback(props.item.id)}>
                     <Typography>{removeMsg}</Typography>
                     <RemoveShoppingCartIcon style={{color: 'd50000'}}/>
                 </IconButton>
-
             </div>
-
-        </GridListTile> 
+        </div>
     )
 }
 
 
 
-export default connect()(CartProduct);
+export default CartProduct;

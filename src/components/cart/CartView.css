@@ -3,32 +3,38 @@
 .cart-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
-    min-height: 20%;
-    /* border: 1px solid; */
-    margin: 100px auto;
-    /* margin-top: 100px; */
-    border-radius: 10px;
+    width: 100%;
+    min-height: 95%;
+    margin: 0px 15%;
+    border: 1px solid;
+}
+.cart-container .cart-view {
+    padding: 5% 0px;
+    height: 100%;
 }
 
-.cart-icon {
-    display: inline-flex;
-    border-radius: 0;
-    /* margin: 0 auto; */
+.cart-container .cart-view .top {
+    height: 10%;
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 1px solid #ccc;
+    margin: 0px 5%;
 }
-.cart-text {
-    text-align: center;
-    font-size: 2.5rem;
-    color: #424242;
+.cart-container .cart-view .top .title {
+    font-size: 2rem;
 }
 
-.cart-gridlist {
-    position: relative;
-    /* border: 1px solid; */
-    border-radius: 10px;
-    justify-content: center;
-    width: 95%;
-    height: 90%;
+.cart-container .cart-view .content {
+    height: 80%;
+
+}
+
+.cart-container .cart-view .content .list {
+    margin: 0px 5%;
+
+}
+.cart-container .cart-view .bottom {
+    height: 10%;
+    border: 1px solid blue;
+
 }
