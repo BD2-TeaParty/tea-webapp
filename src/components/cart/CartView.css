@@ -19,6 +19,7 @@
     align-items: flex-end;
     border-bottom: 1px solid #ccc;
     margin: 0px 5%;
+    margin-bottom: 5px;
 }
 .cart-container .cart-view .top .title {
     font-size: 2rem;
@@ -26,7 +27,7 @@
 
 .cart-container .cart-view .content {
     height: 80%;
-
+    margin: 0px 5%;
 }
 
 .cart-container .cart-view .content .list {
@@ -36,5 +37,5 @@
 .cart-container .cart-view .bottom {
     height: 10%;
     border: 1px solid blue;
-
+    margin: 0px 5%;
 }

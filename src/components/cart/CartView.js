@@ -6,7 +6,7 @@ import './CartView.css';
 // import NotInterestedIcon from '@material-ui/icons/NotInterested';
 import CartProduct from './CartProduct';
 import { FixedSizeList as List } from 'react-window';
-
+import AutoSizer from "react-virtualized-auto-sizer";
 
 const CartView = props => {
 
@@ -57,16 +57,20 @@ const CartView = props => {
                 </div>
 
                 <div className='content'>
-                    <List
-                        className='list'
-                        height={800}
-                        width={800}
-                        itemCount={props.cart.length}
-                        itemData={props.cart}
-                        itemSize={100}
-                    >
-                            {CartItem}
-                    </List>
+                    <AutoSizer>
+                    {({ height, width}) => (
+                        <List
+                            className='list'
+                            height={800}
+                            width={width}
+                            itemCount={props.cart.length}
+                            itemData={props.cart}
+                            itemSize={100}
+                        >
+                                {CartItem}
+                        </List>
+                    )}
+                    </AutoSizer>
                 </div>
 
                 <div className='bottom'>

@@ -15,8 +15,9 @@ const CartProduct = props => {
     return (
         <div className='cart-product-container'>
             <Typography>{props.index}.</Typography>
-            <img src={props.item.img} alt={`${props.item.title}`} />
-
+            <div className='img-container'>
+                <img src={props.item.img} alt={`${props.item.title}`} />
+            </div>
 
             <div className='text-container'>
                 <Typography className='title'>{props.item.title}</Typography>
@@ -26,13 +27,16 @@ const CartProduct = props => {
 
             <div className='quantity-container'>
                 <Typography className='cart-item-quantity'>{quantityMsg} {props.quantity}</Typography>
-                <IconButton onClick={ () => props.decreaseCallback(props.item.id)}>
-                    <RemoveIcon/>
-                </IconButton>
+                
+                <div className='buttons'>
+                    <IconButton onClick={ () => props.decreaseCallback(props.item.id)}>
+                        <RemoveIcon/>
+                    </IconButton>
 
-                <IconButton onClick={ () => props.addCallback(props.item.id)}>
-                    <AddIcon />
-                </IconButton>
+                    <IconButton onClick={ () => props.addCallback(props.item.id)}>
+                        <AddIcon />
+                    </IconButton>
+                </div>
             </div>
 
             <div className='remove-container'>
