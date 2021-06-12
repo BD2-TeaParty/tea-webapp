@@ -24,6 +24,7 @@
 .shipping-container-item .title-container .title {
     font-size: 1rem;
     font-weight: 500;
+    margin-top: 10px;
 }
 .shipping-container-item .price-container {
     width: 20%;
@@ -34,4 +35,5 @@
     font-size: 0.8rem;
     font-weight: 400;
     color: #777;
+    margin-top: 10px;
 }

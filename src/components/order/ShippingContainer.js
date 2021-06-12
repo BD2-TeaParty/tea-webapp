@@ -11,7 +11,7 @@ const ShippingContainer = props => {
 
     const RenderRow = props => (
 
-        <Accordion key={props.id} className='shipping-container-accordion' onChange={() => props.shippingCallback(props.id)} > 
+        <Accordion key={props.id} className='shipping-container-accordion' onChange={() => props.callback(props.id)} > 
             <AccordionSummary className='shipping-container-item'>
             <div className='icon-container'>
                 <Checkbox
@@ -28,6 +28,7 @@ const ShippingContainer = props => {
             <div className='price-container'>
                 <Typography className='price'>({props.price}zł)</Typography>
             </div>
+            
             </AccordionSummary>
         </Accordion>
     )
@@ -37,7 +38,7 @@ const ShippingContainer = props => {
     return (
         <div>
         {props.shippingMethods.map( 
-            (item) => <RenderRow {...item} pick={props.pick} shippingCallback={props.shippingCallback}/>
+            (item) => <RenderRow {...item} key={item.id} pick={props.pick} callback={props.callback}/>
         )}
         </div>
     )

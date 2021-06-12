@@ -5,6 +5,8 @@ import { Typography } from '@material-ui/core';
 
 import './OrderPage.css';
 import ShippingContainer from './ShippingContainer';
+import PaymentContainer from './PaymentContainer';
+import BuyerDetails from './BuyerDetails';
 
 
 const OrderPage = props => {
@@ -36,8 +38,29 @@ const OrderPage = props => {
         }
     ]
 
+    const paymentMethods = [
+        {
+            id: 0,
+            title: 'BLIK',
+            description: 'bezpłatnie'
+        },
+        {
+            id: 1,
+            title: 'Karta płatnicza',
+            description: 'bezpłatnie'
+        },
+        {
+            id: 2,
+            title: 'Szybki przelew (PayU)',
+            description: 'bezpłatnie'
+        },
+    ]
+
     const [shippingMethod, setShippingMethod] = useState(0);
     const shippingCallback = id => { setShippingMethod(id); }
+
+    const [paymentMethod, setPaymentMethod] = useState(0);
+    const paymentCallback = id => { setPaymentMethod(id); }
 
     return (
         <div className='order-container'>
@@ -46,15 +69,17 @@ const OrderPage = props => {
                     <Typography className='title'>Dostawa i płatność</Typography>
                         <div className='shipping'>
                             <Typography className='subtitle'>1. Sposób dostawy</Typography>
-                            <ShippingContainer shippingMethods={shippingMethods} pick={shippingMethod} shippingCallback={shippingCallback}/>
+                            <ShippingContainer shippingMethods={shippingMethods} pick={shippingMethod} callback={shippingCallback}/>
                         </div>
 
                         <div className='payment'>
-
+                            <Typography className='subtitle'>2. Metoda płatności</Typography>
+                            <PaymentContainer methods={paymentMethods} pick={paymentMethod} callback={paymentCallback} />
                         </div>
 
                         <div className='user-data'>
-                            
+                            <Typography className='subtitle'>3. Dane kupującego</Typography>
+                            <BuyerDetails/>
                         </div>
                 </section>
 
