@@ -1,12 +1,9 @@
-
-
 .cart-container {
     display: flex;
     flex-direction: column;
     width: 100%;
     min-height: 95%;
     margin: 0px 15%;
-    border: 1px solid;
 }
 .cart-container .cart-view {
     padding: 5% 0px;
@@ -21,21 +18,63 @@
     margin: 0px 5%;
     margin-bottom: 5px;
 }
+
 .cart-container .cart-view .top .title {
     font-size: 2rem;
 }
 
 .cart-container .cart-view .content {
-    height: 80%;
-    margin: 0px 5%;
-}
-
-.cart-container .cart-view .content .list {
+    min-height: 80%;
     margin: 0px 5%;
 
 }
+
+.cart-container .cart-view .content .list::-webkit-scrollbar {
+    width: 10px;
+}
+
+.cart-container .cart-view .content .list::-webkit-scrollbar-thumb {
+    background-color: #757575;
+    border-radius: 20px;
+    border: 3px solid #E0E0E0;
+}
+
+.cart-container .cart-view .content .list::-webkit-scrollbar-track {
+    background: #E0E0E0;
+    border-radius: 20px;
+}
+
 .cart-container .cart-view .bottom {
     height: 10%;
-    border: 1px solid blue;
+    width: 90%;
+    margin: 10px 5%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-top: 1px solid #aaa;
+}
+
+.cart-container .cart-view .bottom .text-container {
+    display: inline-flex;
+    align-items: baseline;
+    border-bottom: 1px solid;
+}
+
+.cart-container .cart-view .bottom .text-container .info {
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.cart-container .cart-view .bottom .text-container .price {
+    font-size: 1.75rem;
+    font-weight: 500;
+}
+
+.cart-container .cart-view .bottom button {
     margin: 0px 5%;
+    padding: 20px 50px;
+    min-height: 50px;
+    height: 50%;
+    color: #fff;
+    background-color: green;
 }

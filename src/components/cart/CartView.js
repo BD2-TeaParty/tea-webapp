@@ -1,5 +1,5 @@
-import { Typography } from '@material-ui/core';
-import React from 'react';
+import { Button, Typography } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { addItem, removeItem, decreaseItem, increaseItem } from '../../redux/actions/cartActions';
 import './CartView.css';
@@ -7,11 +7,18 @@ import './CartView.css';
 import CartProduct from './CartProduct';
 import { FixedSizeList as List } from 'react-window';
 import AutoSizer from "react-virtualized-auto-sizer";
+import { calculatePrice } from './util/calculatePrice';
 
 const CartView = props => {
 
 
     const emptyCart = 'Brak przedmiotów w koszyku.';
+    const totalCost = 'Łączny koszt: ';
+
+    const [price, setPrice] = useState(0.0);
+
+    useEffect( () => { setPrice(calculatePrice(props.cart)); }, []);
+    useEffect( () => { setPrice(calculatePrice(props.cart)); }, [props.cart]);
 
     const removeCallback = id => {
         const index = props.cart.findIndex( cartObj => cartObj.item.id === id);
@@ -61,7 +68,7 @@ const CartView = props => {
                     {({ height, width}) => (
                         <List
                             className='list'
-                            height={800}
+                            height={height}
                             width={width}
                             itemCount={props.cart.length}
                             itemData={props.cart}
@@ -74,7 +81,13 @@ const CartView = props => {
                 </div>
 
                 <div className='bottom'>
-                    <Typography>bottom</Typography>
+                    <div className='text-container'>
+                        <Typography className='info'>{totalCost} </Typography>
+                        <Typography className='price'>{price}zł</Typography>
+                    </div>
+                    <Button>
+                        KUP TERAZ
+                    </Button>
                 </div>
             </section>
         </div>

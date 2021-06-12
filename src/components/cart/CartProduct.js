@@ -13,7 +13,7 @@ const CartProduct = props => {
     const removeMsg = 'Usuń z koszyka';
     console.log(props);
     return (
-        <div className='cart-product-container'>
+        <div style={props.style} className='cart-product-container' >
             <Typography>{props.index}.</Typography>
             <div className='img-container'>
                 <img src={props.item.img} alt={`${props.item.title}`} />
