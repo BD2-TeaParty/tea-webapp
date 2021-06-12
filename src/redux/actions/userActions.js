@@ -17,6 +17,7 @@ import {
     ADD_TO_WISHLIST,
     REMOVE_FROM_WISHLIST,
     PUSH_TEMP_ORDER,
+    SET_ADDRESS,
 } from '../constants/userTypes';
 import store from '../store';
 
@@ -208,4 +209,20 @@ export const removeFromWishlist = index => dispatch => {
 
 export const pushTempOrder = order => dispatch => {
     return dispatch({type: PUSH_TEMP_ORDER, payload: order});
+}
+
+
+export const setAddress = (name, city, postcode, street, email, phone) => dispatch => {
+
+    const addressJson = {
+        name: name,
+        city: city,
+        postcode: postcode,
+        streetAddress: street,
+        email: email,
+        phone: phone,
+    }   
+    console.log('setAddress', addressJson);
+    return dispatch({type: SET_ADDRESS, payload: addressJson})
+
 }

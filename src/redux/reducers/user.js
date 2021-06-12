@@ -22,8 +22,8 @@ const initialState = {
 
     isLoggedIn: false,
     
-    user: { id: "", name: "Anonim"},
-    address: { city: "", street: "", streetNo: "", houseNo: ""},
+    user: { id: "", name: "Anonim", email: ""},
+    address: { name: "", city: "", postcode: "", streetAddress: "", email: "", phone: ""},
     userLoading: false,
     userError: false,
     errorMessage: '',
