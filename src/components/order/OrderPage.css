@@ -1,0 +1,48 @@
+
+.order-container {
+    /* height: 90; */
+    width: 100%;
+    margin: 0px 15%;
+
+}
+
+.order-body {
+    height: 80%;
+    padding: 5% 0px;
+    display: flex;
+}
+
+.order-body .user-choice {
+    width: 67%;
+    border-right: 1px solid #aaa;
+}
+
+.order-body .user-choice .title {
+    font-size: 2rem;
+    /* margin-left: 2rem; */
+    font-weight: 500;
+}
+
+.order-body .user-choice .shipping {
+    margin-bottom: 2rem;
+    /* display: flex; */
+    align-items: flex-start;
+}
+.order-body .user-choice .payment {
+    margin-bottom: 2rem;
+
+}
+.order-body .user-choice .user-data {
+    margin-bottom: 2rem;
+
+}
+
+.order-body .cart-data {
+    width: 33%;
+}
+
+.order-body .user-choice .subtitle {
+    font-size: 1.25rem;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}

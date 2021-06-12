@@ -5,7 +5,7 @@ import Navbar from './components/navbar/Navbar';
 import ProductList from './components/products/ProductList';
 import CartView from './components/cart/CartView';
 import UserView from './components/user/UserView';
-import OrderPage from './components/cart/OrderPage';
+import OrderPage from './components/order/OrderPage';
 
 function App() {
     return (
