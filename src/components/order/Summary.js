@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button, TextField } from '@material-ui/core';
 
 import './Summary.css';
+import { calculateTotalPrice } from './util/calculateTotalPrice';
 // import SummaryItem from './SummaryItem';
 
 const Summary = props => {
@@ -9,13 +10,12 @@ const Summary = props => {
 
     const cartMessage = 'Wartość koszyka';
     const shippingMessage = 'Koszt dostawy';
-    // const paymentMessage = 'Koszt płatności';
+    const paymentMessage = 'Koszt płatności';
     const discountMessage = 'Rabat';
     const sum = 'Łącznie';
+    const discountLabel ='Kod rabatowy';
 
     const [cartPrice, setCartPrice] = useState(0);
-    const [totalPrice, setTotalPrice] = useState(0);
-    // const [discount, setDiscount] = useState
     useEffect( () => {
         let sum = 0.0;
         for (let itemObj of props.order.items) {
@@ -25,16 +25,19 @@ const Summary = props => {
         setCartPrice(Math.round(sum * 100) / 100);
     }, [])
 
-    useEffect( () => {
+    const [totalPrice, setTotalPrice] = useState(0);
 
+    useEffect( () => { 
+        setTotalPrice( calculateTotalPrice(cartPrice, props.shippingPrice, props.paymentPrice, null) ); 
     }, [cartPrice, props.shippingPrice])
+
+
     const chooseBorderRadius = index => {
-        console.log('indeks:', index);
+        //only one item on the list
         if (props.order.items.length <= 1) {
             return {
                 borderRadius: 5
             };
-        
         } else {    
             //first item
             if(index === 0) {
@@ -88,7 +91,12 @@ const Summary = props => {
                 ))}
 
                 <div id='price-summary' className='price-summary'>
-                    <Typography>xd</Typography>
+                    <div id='discount' className='discount'>
+                        <TextField className='textfield' id='discount' label={discountLabel} defaultValue={props.order.discount} />
+                        <Button>
+                            ok
+                        </Button>
+                    </div>
 
                     <div className='price-component'>
                         <Typography className='text'>{cartMessage}</Typography>
@@ -98,6 +106,11 @@ const Summary = props => {
                     <div className='price-component'>
                         <Typography className='text'>{shippingMessage}</Typography>
                         <Typography className='text'>{props.shippingPrice}zł</Typography>
+                    </div>
+
+                    <div className='price-component'>
+                        <Typography className='text'>{paymentMessage}</Typography>
+                        <Typography className='text'>{props.paymentPrice}zł</Typography>
                     </div>
 
                     <div className='price-component'>
@@ -111,7 +124,7 @@ const Summary = props => {
                     </div>
                 </div>
                 <Button>
-                    Nabijam i smażę silver lemon haze
+                    Potwierdzam i kupuję
                 </Button>
 
             </div>

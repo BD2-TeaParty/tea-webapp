@@ -43,17 +43,20 @@ const OrderPage = props => {
         {
             id: 0,
             title: 'BLIK',
-            description: 'bezpłatnie'
+            // description: 'bezpłatnie',
+            price: 0.0
         },
         {
             id: 1,
             title: 'Karta płatnicza',
-            description: 'bezpłatnie'
+            // description: 'bezpłatnie',
+            price: 0.0
         },
         {
             id: 2,
             title: 'Szybki przelew (PayU)',
-            description: 'bezpłatnie'
+            // description: 'bezpłatnie',
+            price: 0.0
         },
     ]
 
@@ -63,12 +66,17 @@ const OrderPage = props => {
     useEffect( () => { setShippingPrice(shippingMethods[shippingMethod].price)}, [shippingMethod]);
 
     const [paymentMethod, setPaymentMethod] = useState(0);
+    const [paymentPrice, setPaymentPrice] = useState(0);
     const paymentCallback = id => { setPaymentMethod(id); }
-
+    useEffect( () => { setPaymentPrice(paymentMethods[paymentMethod].price)}, [paymentMethod]);
+    
     return (
         <div className='order-container'>
+            {props.tempOrders.length ?
             <div className='order-body'>
-                <section className='user-choice'>
+
+                <section className='user-choice'> 
+
                     <Typography className='title'>Dostawa i płatność</Typography>
                         <div className='shipping'>
                             <Typography className='subtitle'>1. Sposób dostawy</Typography>
@@ -84,12 +92,17 @@ const OrderPage = props => {
                             <Typography className='subtitle'>3. Dane kupującego</Typography>
                             <BuyerDetails/>
                         </div>
+
                 </section>
 
                 <section className='cart-data'>
-                    <Summary order={order} shippingPrice={shippingPrice}/>
+                    <Summary order={order} shippingPrice={shippingPrice} paymentPrice={paymentPrice}/>
                 </section>
+                
             </div>
+            
+            : <Typography style={{textAlign: 'center', marginTop: '25%'}}>Brak składanego zamówienia w sesji!</Typography>
+            }
         </div>
 
     )
