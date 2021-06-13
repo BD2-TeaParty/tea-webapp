@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { Typography } from '@material-ui/core';
@@ -7,6 +7,7 @@ import './OrderPage.css';
 import ShippingContainer from './ShippingContainer';
 import PaymentContainer from './PaymentContainer';
 import BuyerDetails from './BuyerDetails';
+import Summary from './Summary';
 
 
 const OrderPage = props => {
@@ -57,7 +58,9 @@ const OrderPage = props => {
     ]
 
     const [shippingMethod, setShippingMethod] = useState(0);
+    const [shippingPrice, setShippingPrice] = useState(0);
     const shippingCallback = id => { setShippingMethod(id); }
+    useEffect( () => { setShippingPrice(shippingMethods[shippingMethod].price)}, [shippingMethod]);
 
     const [paymentMethod, setPaymentMethod] = useState(0);
     const paymentCallback = id => { setPaymentMethod(id); }
@@ -84,7 +87,7 @@ const OrderPage = props => {
                 </section>
 
                 <section className='cart-data'>
-                    
+                    <Summary order={order} shippingPrice={shippingPrice}/>
                 </section>
             </div>
         </div>

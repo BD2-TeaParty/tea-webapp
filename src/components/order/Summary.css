@@ -1,0 +1,83 @@
+
+.summary-container {
+    margin: 5% 5%;
+    /* height: 100%; */
+}
+
+.summary-panel {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.summary-panel .item-div {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #aaa;
+    align-items: center;    
+}
+
+.summary-panel .item-div img {
+    width: 50px;
+    height: 50px;
+    margin-left: 5px;
+}
+
+.summary-panel .item-div .text-view {
+    width: 60%;
+
+}
+.summary-panel .item-div .text-view .title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-left: 20px;
+}
+
+.summary-panel .item-div .qp {
+    width: 20%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.summary-panel .item-div .qp .price {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: -5px;
+}
+.summary-panel .item-div .qp .quantity {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+.summary-panel .price-summary {
+    margin-top: 10px;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-panel .price-summary .price-component {
+    display: inline-flex;
+    justify-content: space-between;
+    margin: 3px 4%;
+
+}
+
+.summary-panel .price-summary .price-component .text {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.summary-panel .price-summary .final-price {
+    /* width: 80%; */
+    margin: 10px 4%;
+    border-top: 1px solid;
+    display: inline-flex;
+    justify-content: space-between;
+}
+.summary-panel .price-summary .final-price .text {
+
+    font-size: 1rem;
+    color: #777;
+}
