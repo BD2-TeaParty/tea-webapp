@@ -35,10 +35,10 @@ const Summary = props => {
                     setDiscountPrice(discount.value);
                     break;
                 case 'factor':
-                    setDiscountPrice(cartPrice * discount.factor);
+                    setDiscountPrice(Math.round(cartPrice * discount.factor * 100) / 100);
                     break;
                 case 'shipping':
-                    setDiscountPrice(props.shippingPrice * discount.factor);
+                    setDiscountPrice(Math.round(props.shippingPrice * discount.factor * 100) / 100);
                     break;
                 default:
                     break;

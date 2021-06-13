@@ -11,9 +11,11 @@ const CartProduct = props => {
 
     const quantityMsg = 'W koszyku:';
     const removeMsg = 'Usuń z koszyka';
+    const totalPrice = Math.round(props.quantity * props.item.price * 100) / 100;
+    console.log(props);
     return (
         <div style={props.style} className='cart-product-container' >
-            <Typography>{props.index}.</Typography>
+            <Typography>{props.index + 1}.</Typography>
             <div className='img-container'>
                 <img src={props.item.img} alt={`${props.item.title}`} />
             </div>
@@ -25,7 +27,7 @@ const CartProduct = props => {
 
 
             <div className='quantity-container'>
-                <Typography className='cart-item-quantity'>{quantityMsg} {props.quantity}</Typography>
+                <Typography className='price'>{props.quantity} x {props.item.price}zł = {totalPrice}zł</Typography>
                 
                 <div className='buttons'>
                     <IconButton onClick={ () => props.decreaseCallback(props.item.id)}>

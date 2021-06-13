@@ -43,11 +43,15 @@
     height: 100%;
     width: 20%;
     display: inline-flex;
-    flex-direction: row;
+    flex-direction: column;
     align-content: center;
     align-items: center;
     justify-items: center;
     justify-content: center;
+}
+.cart-product-container .quantity-container .price {
+    font-size: 0.8rem;
+    color: #777;
 }
 .cart-product-container .quantity-container .buttons {
     display: inline-flex;

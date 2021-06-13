@@ -26,10 +26,10 @@ const Wishlist = props => {
 
         switch(sortMethod) {
             case 'oldest-first':
-                setSortedData(props.items.sort( (a,b) => (a.date.getTime() > b.date.getTime()) ? 1 : -1 ) );
+                setSortedData(props.items.sort( (a,b) => (a.date.getTime() > b.date.getTime()) ? -1 : 1 ) );
                 break;
             case 'oldest-last':
-                setSortedData(props.items.sort( (a,b) => (a.date.getTime() <= b.date.getTime()) ? 1 : -1 ) );
+                setSortedData(props.items.sort( (a,b) => (a.date.getTime() <= b.date.getTime()) ? -1 : 1 ) );
                 break;
             // case 'alphabetically':
             //     console.log('alpha')
@@ -61,7 +61,7 @@ const Wishlist = props => {
 
         return (
             <div className='user-wishlist-container-item' style={style}>
-                <Typography className='index'>{index}.</Typography>
+                <Typography className='index'>{index+1}.</Typography>
                 <img src={item.img} alt={item.title} />
                 <div className='text-div'>
                     <Typography className='item-title'>{item.title}</Typography>
