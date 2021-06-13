@@ -46,6 +46,32 @@ const initialState = {
     error: false,
 
     tempOrders: [],
+
+    availableDiscounts: [
+        {
+            id: 0,
+            title: '10% na całe zamówienie przy MWZ 100zł',
+            code: 'BD2-10OFF',
+            type: 'factor',
+            factor: 0.1,
+            minimum: 100
+        },
+        {
+            id: 1,
+            title: '50zł taniej zamówienie przy MWZ150zł',
+            code: 'BD2-50PLNOFF',
+            type: 'regular',
+            minimum: 150.00,
+            value: 50.00
+        },
+        {
+            id: 2,
+            title: 'Darmowa wysyłka',
+            code: 'BD2-SHIPOFF',
+            type: 'shipping',
+            factor: 1.0
+        }
+    ]
 }
 
 

@@ -1,7 +1,7 @@
 
 
 
-export const calculateTotalPrice = (cartPrice, shippingPrice, paymentPrice, discountObj) => {
+export const calculateTotalPrice = (cartPrice, shippingPrice, paymentPrice, discountValidated, discountObj) => {
 
     let sum = 0.0;
 
@@ -9,13 +9,16 @@ export const calculateTotalPrice = (cartPrice, shippingPrice, paymentPrice, disc
     sum += shippingPrice;
     sum += paymentPrice;
 
-    if (discountObj !== null) {
+    if (discountValidated) {
         switch (discountObj.type) {
             case 'regular':
+                sum -= discountObj.value;
                 break;
             case 'shipping':
+                sum -= discountObj.factor * shippingPrice;
                 break;
             case 'factor':
+                sum *= (1 - discountObj.factor);
                 break;
             default:
                 break;

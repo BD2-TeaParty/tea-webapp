@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { connect } from 'react-redux';
+
 import { Typography, Button, TextField } from '@material-ui/core';
 
-import './Summary.css';
 import { calculateTotalPrice } from './util/calculateTotalPrice';
-// import SummaryItem from './SummaryItem';
+import { validateDiscount } from './util/validateDiscount';
+import './Summary.css';
+import { itemBorderRadius } from './util/itemBorderRadius';
+
+
 
 const Summary = props => {
 
@@ -14,8 +19,34 @@ const Summary = props => {
     const discountMessage = 'Rabat';
     const sum = 'Łącznie';
     const discountLabel ='Kod rabatowy';
+    const discountRef = useRef();
 
     const [cartPrice, setCartPrice] = useState(0);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const [discount, setDiscount] = useState(null);
+    const [discountValidated, setDiscountValidated] = useState(false);
+    const [discountPrice, setDiscountPrice] = useState(0);
+    const validateCallback = validation => { setDiscountValidated(validation)};
+
+    const calculateDiscountPrice = () => {
+        if (discount !== null && discountValidated) {
+            switch (discount.type) {
+                case 'regular':
+                    setDiscountPrice(discount.value);
+                    break;
+                case 'factor':
+                    setDiscountPrice(cartPrice * discount.factor);
+                    break;
+                case 'shipping':
+                    setDiscountPrice(props.shippingPrice * discount.factor);
+                    break;
+                default:
+                    break;
+            }
+        } else setDiscountPrice(0);
+    }
+
+    //update cart price
     useEffect( () => {
         let sum = 0.0;
         for (let itemObj of props.order.items) {
@@ -25,49 +56,33 @@ const Summary = props => {
         setCartPrice(Math.round(sum * 100) / 100);
     }, [])
 
-    const [totalPrice, setTotalPrice] = useState(0);
-
+    //update total price
     useEffect( () => { 
-        setTotalPrice( calculateTotalPrice(cartPrice, props.shippingPrice, props.paymentPrice, null) ); 
-    }, [cartPrice, props.shippingPrice])
+        const total = calculateTotalPrice(cartPrice, props.shippingPrice, props.paymentPrice, discountValidated, discount); 
+        setTotalPrice(total);
+    }, [cartPrice, props.shippingPrice, discount, discountValidated, discountPrice])
 
-
-    const chooseBorderRadius = index => {
-        //only one item on the list
-        if (props.order.items.length <= 1) {
-            return {
-                borderRadius: 5
-            };
-        } else {    
-            //first item
-            if(index === 0) {
-                return {
-                    borderBottomWidth: 0,
-                    borderRadius: 0,
-                    borderTopLeftRadius: 5,
-                    borderTopRightRadius: 5,
-                }
-
-            //last item
-            } else if (index === props.order.items.length - 1) {
-                return {
-                    borderRadius: 0,
-                    borderBottomLeftRadius: 5,
-                    borderBottomRightRadius: 5
-                }
-
-            //any item in between
-            } else {
-                return {
-                    borderBottomWidth: 0,
-                    borderRadius: 0
-                }
+    //update discount price
+    useEffect( () => {
+        calculateDiscountPrice();
+    }, [discount, discountValidated, props.shippingPrice]);
+    
+    //search for discount
+    const tryApplyingDiscount = () => {
+        setDiscount(null);
+        setDiscountValidated(false);
+        const code = discountRef.current.value;
+        console.log('kodzik', code);
+        for (let discountObj of props.availableDiscounts) {
+            if (discountObj.code === code) {
+                setDiscount(discountObj);
+                validateDiscount(cartPrice, discountObj, validateCallback);
+                break;
             }
         }
     }
 
 
-    console.log(props);
     return (
         <div className='summary-container'>
             <Typography>Twoje zamówienie</Typography>
@@ -76,7 +91,7 @@ const Summary = props => {
 
                 {/* Render product item */}
                 {props.order.items.map( (item, index) => (
-                    <div id='item-summary' key={item.item.id} className='item-div' style={chooseBorderRadius(index)}>
+                    <div id='item-summary' key={item.item.id} className='item-div' style={itemBorderRadius(index, props.order.items.length)}>
                         <img src={item.item.img} alt={item.item.title} />
 
                         <div id='title-container' className='text-view'>
@@ -92,8 +107,8 @@ const Summary = props => {
 
                 <div id='price-summary' className='price-summary'>
                     <div id='discount' className='discount'>
-                        <TextField className='textfield' id='discount' label={discountLabel} defaultValue={props.order.discount} />
-                        <Button>
+                        <TextField inputRef={discountRef} className='textfield' id='discount' label={discountLabel} defaultValue={props.order.discount} />
+                        <Button onClick={ () => tryApplyingDiscount()}>
                             ok
                         </Button>
                     </div>
@@ -115,7 +130,7 @@ const Summary = props => {
 
                     <div className='price-component'>
                         <Typography className='text'>{discountMessage}</Typography>
-                        <Typography className='text'>0 zł</Typography>
+                        <Typography className='text'>{discountPrice} zł</Typography>
                     </div>
 
                     <div className='final-price'>
@@ -132,5 +147,9 @@ const Summary = props => {
     )
 }
 
-
-export default Summary;
+const mapStateToProps = state => {
+    return {
+        availableDiscounts: state.userReducer.availableDiscounts
+    }
+}
+export default connect(mapStateToProps)(Summary);

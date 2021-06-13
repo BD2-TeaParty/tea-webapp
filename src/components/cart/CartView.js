@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FixedSizeList as List } from 'react-window';
 import AutoSizer from "react-virtualized-auto-sizer";
+import { v4 as uuidv4 } from 'uuid';
 
 import { Button, Typography } from '@material-ui/core';
 
@@ -47,9 +48,11 @@ const CartView = props => {
     
     const addToTempOrders = () => {
         const tempOrder = {
+            id: uuidv4(),
             date: new Date(),
             items: [...props.cart],
-            price: price
+            price: price,
+            discount: '',
         }
 
         // console.log('tymczasowe zamowienie', tempOrder);
