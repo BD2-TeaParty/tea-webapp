@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN_ENDPOINT, ORDERS_ENDPOINT, REGISTER_ENDPOINT, WISHLIST_ENDPOINT } from '../../util/ApiLinks';
+import { LOGIN_ENDPOINT, NEW_ORDER_ENDPOINT, ORDERS_ENDPOINT, REGISTER_ENDPOINT, WISHLIST_ENDPOINT } from '../../util/ApiLinks';
 import { 
     REQUEST_LOGIN, 
     LOGIN_SUCCESS, 
@@ -18,6 +18,9 @@ import {
     REMOVE_FROM_WISHLIST,
     PUSH_TEMP_ORDER,
     SET_ADDRESS,
+    REQUEST_CONFIRM_ORDER,
+    RECEIVE_CONFIRM_ORDER_SUCCESS,
+    RECEIVE_CONFIRM_ORDER_ERROR,
 } from '../constants/userTypes';
 import store from '../store';
 
@@ -226,3 +229,47 @@ export const setAddress = (name, city, postcode, street, email, phone) => dispat
     return dispatch({type: SET_ADDRESS, payload: addressJson})
 
 }
+
+const requestOrderConfirmation = () => ({
+    type: REQUEST_CONFIRM_ORDER
+})
+
+const receiveOrderConfirmation = json => ({
+    type: RECEIVE_CONFIRM_ORDER_SUCCESS,
+    payload: json,
+})
+
+const receiveOrderFailure = json => ({
+    type: RECEIVE_CONFIRM_ORDER_ERROR,
+    payload: json,
+})
+
+export const confirmOrder = order => dispatch => {
+
+    dispatch(requestOrderConfirmation());
+
+
+    setTimeout( () => {
+        dispatch(receiveOrderConfirmation(order));
+    }, 1000)
+    /*return axios({
+        url: NEW_ORDER_ENDPOINT,
+        timeout: 20000,
+        method: 'POST',
+        data: order,
+        responseType: 'json'
+        })
+
+        .then( response => {
+            console.log('Got response for new order', response);
+            dispatch(receiveOrderConfirmation(response.data));
+        })
+
+        .catch( response => {
+            console.log('Got error adding new order:', response);
+            dispatch(receiveOrderFailure(response.data));
+        })
+    */
+
+}
+

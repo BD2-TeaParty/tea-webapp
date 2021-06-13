@@ -8,3 +8,5 @@ export const LOGIN_ENDPOINT = `${USER_ENDPOINT}/login`;
 export const REGISTER_ENDPOINT = `${USER_ENDPOINT}/register`;
 export const ORDERS_ENDPOINT = `${USER_ENDPOINT}/orders`;
 export const WISHLIST_ENDPOINT = `${USER_ENDPOINT}/wishlist`;
+
+export const NEW_ORDER_ENDPOINT = `${ORDERS_ENDPOINT}/new`;

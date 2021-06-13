@@ -100,5 +100,22 @@
 .summary-panel .price-summary .final-price .text {
 
     font-size: 1rem;
-    color: #777;
+    font-weight: 500;
+    color: #222;
+}
+
+.summary-panel .pay-view {
+    display: flex;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.summary-panel .pay-view button {
+    background-color: green;
+    color: #fff;
+    width: 50%;
+}
+.summary-panel .pay-view button:hover {
+    background-color: #4CAF50;
 }

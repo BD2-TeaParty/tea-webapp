@@ -81,6 +81,8 @@ const Summary = props => {
             }
         }
     }
+    
+
 
 
     return (
@@ -138,10 +140,13 @@ const Summary = props => {
                         <Typography className='text'>{totalPrice}zł</Typography>
                     </div>
                 </div>
-                <Button>
-                    Potwierdzam i kupuję
-                </Button>
 
+                <div className='pay-view'>
+                    <Button className='pay-button' onClick={ () => props.confirmOrder(totalPrice)}>
+                        Potwierdzam i kupuję
+                    </Button>
+                </div>
+                
             </div>
         </div>
     )

@@ -13,14 +13,21 @@ const Orders = props => {
             <Typography>{index}</Typography>
         )
     }
+
+    console.log('zamowienia:', props);
     return (
         <div className='user-orders-container'>
             <Typography className='title'>Twoje Zamówienia</Typography>
 
             {props.items.length ?
-                <List>
-                    {orderRow}
-                </List>
+                // <List>
+                //     {orderRow}
+                // </List>
+                props.items.map( (item, index) => (
+                    <div>
+                        <Typography>{item.id} za {item.totalPrice}zł</Typography>
+                    </div>
+                ))
             :
                 <Typography>Brak zamówień :(</Typography>
             }

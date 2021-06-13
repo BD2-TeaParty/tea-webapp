@@ -13,11 +13,10 @@
 
 .buyerdetails-container .bottom button {
     margin: 10px 0;
-    background-color: #4CAF50;
-    color: #eee;
+    background-color: green;
+    color: #fff;
 }
 
 .buyerdetails-container .bottom button:hover {
-    background-color: #43A047;
-    color: #fff;
+    background-color: #4CAF50;
 }

@@ -4,6 +4,7 @@ import {
     INCREASE_QUANTITY,
     REMOVE_FROM_CART,
 } from '../constants/cartTypes';
+import { RECEIVE_CONFIRM_ORDER_SUCCESS } from '../constants/userTypes';
 
 
 const initialState = {
@@ -60,6 +61,9 @@ export const cartReducer = (state = initialState, action) => {
                         ? { ...item, quantity: item.quantity - 1}
                         : item) 
             }
+        case RECEIVE_CONFIRM_ORDER_SUCCESS:
+            console.log('yeeeeeeee cartReducer');
+            return initialState;
         // case types.ADD_TO_CART_REQUEST:
         //     return {
         //         ...state,

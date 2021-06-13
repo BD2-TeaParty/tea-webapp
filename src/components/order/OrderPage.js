@@ -8,6 +8,8 @@ import ShippingContainer from './ShippingContainer';
 import PaymentContainer from './PaymentContainer';
 import BuyerDetails from './BuyerDetails';
 import Summary from './Summary';
+import PaymentModal from './PaymentModal';
+import { confirmOrder } from '../../redux/actions/userActions';
 
 
 const OrderPage = props => {
@@ -69,7 +71,20 @@ const OrderPage = props => {
     const [paymentPrice, setPaymentPrice] = useState(0);
     const paymentCallback = id => { setPaymentMethod(id); }
     useEffect( () => { setPaymentPrice(paymentMethods[paymentMethod].price)}, [paymentMethod]);
-    
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const handleModalClose = () => {
+        setModalIsOpen(false);
+    }
+    const confirmOrder = (totalPrice) => {
+        order.totalPrice = totalPrice;
+        props.confirmOrder(order);
+        setModalIsOpen(true);
+
+        setTimeout( () => {
+            handleModalClose()
+        }, 3000);
+    }
     return (
         <div className='order-container'>
             {props.tempOrders.length ?
@@ -96,9 +111,9 @@ const OrderPage = props => {
                 </section>
 
                 <section className='cart-data'>
-                    <Summary order={order} shippingPrice={shippingPrice} paymentPrice={paymentPrice}/>
+                    <Summary order={order} shippingPrice={shippingPrice} paymentPrice={paymentPrice} modalIsOpen={modalIsOpen} confirmOrder={confirmOrder}/>
                 </section>
-                
+                <PaymentModal open={modalIsOpen}/>
             </div>
             
             : <Typography style={{textAlign: 'center', marginTop: '25%'}}>Brak składanego zamówienia w sesji!</Typography>
@@ -113,9 +128,11 @@ const mapStateToProps = (state) => {
     return {
         user: state.userReducer.user,
         address: state.userReducer.address,
-        tempOrders: state.userReducer.tempOrders
+        tempOrders: state.userReducer.tempOrders,
+        confirmOrderLoading: state.userReducer.confirmOrderLoading,
+        confirmOrderError: state.userReducer.confirmOrderError,
     }
 }
 
 
-export default connect(mapStateToProps)(OrderPage);
+export default connect(mapStateToProps, {confirmOrder})(OrderPage);

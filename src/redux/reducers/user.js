@@ -16,6 +16,9 @@ import { LOGOUT,
     REMOVE_FROM_WISHLIST,
     ADD_TO_WISHLIST,
     PUSH_TEMP_ORDER,
+    REQUEST_CONFIRM_ORDER,
+    RECEIVE_CONFIRM_ORDER_SUCCESS,
+    RECEIVE_CONFIRM_ORDER_ERROR,
 } from '../constants/userTypes';
 
 const initialState = {
@@ -46,6 +49,8 @@ const initialState = {
     error: false,
 
     tempOrders: [],
+    confirmOrderLoading: false,
+    confirmOrderError: false,
 
     availableDiscounts: [
         {
@@ -191,6 +196,29 @@ export const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 tempOrders: [...state.tempOrders, action.payload]
+            }
+        case REQUEST_CONFIRM_ORDER:
+            return {
+                ...state,
+                confirmOrderLoading: true,
+                confirmOrderError: false,
+            }
+        case RECEIVE_CONFIRM_ORDER_SUCCESS:
+            const tempOrderIndex = state.tempOrders.findIndex( order => order.id === action.payload.id);
+
+            return {
+                ...state,
+                confirmOrderLoading: false,
+                confirmOrderError: false,
+                orders: [...state.orders, action.payload],
+                tempOrders: [...state.tempOrders.slice(0, tempOrderIndex), ...state.tempOrders.slice(tempOrderIndex + 1)],
+            }
+            
+        case RECEIVE_CONFIRM_ORDER_ERROR:
+            return {
+                ...state,
+                confirmOrderLoading: false,
+                confirmOrderError: true,
             }
         default:
             return state;
