@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-
+import {useHistory} from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 
 import './OrderPage.css';
@@ -73,17 +73,18 @@ const OrderPage = props => {
     useEffect( () => { setPaymentPrice(paymentMethods[paymentMethod].price)}, [paymentMethod]);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const history = useHistory();
     const handleModalClose = () => {
         setModalIsOpen(false);
+        history.push('/user');
     }
-    const confirmOrder = (totalPrice) => {
+
+
+    const confirmCallback = (totalPrice) => {
         order.totalPrice = totalPrice;
         props.confirmOrder(order);
         setModalIsOpen(true);
 
-        setTimeout( () => {
-            handleModalClose()
-        }, 3000);
     }
     return (
         <div className='order-container'>
@@ -111,12 +112,15 @@ const OrderPage = props => {
                 </section>
 
                 <section className='cart-data'>
-                    <Summary order={order} shippingPrice={shippingPrice} paymentPrice={paymentPrice} modalIsOpen={modalIsOpen} confirmOrder={confirmOrder}/>
+                    <Summary order={order} shippingPrice={shippingPrice} paymentPrice={paymentPrice} confirmOrder={confirmCallback}/>
                 </section>
-                <PaymentModal open={modalIsOpen}/>
+                <PaymentModal open={modalIsOpen} confirmOrderLoading={props.confirmOrderLoading} confirmOrderError={props.confirmOrderError}/>
             </div>
             
-            : <Typography style={{textAlign: 'center', marginTop: '25%'}}>Brak składanego zamówienia w sesji!</Typography>
+            : <div>
+                <Typography style={{textAlign: 'center', marginTop: '25%'}}>Brak składanego zamówienia w sesji!</Typography>
+                <PaymentModal open={modalIsOpen} confirmOrderLoading={props.confirmOrderLoading} confirmOrderError={props.confirmOrderError} closeRequest={handleModalClose}/>
+            </div>
             }
         </div>
 

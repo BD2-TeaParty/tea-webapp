@@ -248,10 +248,9 @@ export const confirmOrder = order => dispatch => {
 
     dispatch(requestOrderConfirmation());
 
-
     setTimeout( () => {
         dispatch(receiveOrderConfirmation(order));
-    }, 1000)
+    }, 5000)
     /*return axios({
         url: NEW_ORDER_ENDPOINT,
         timeout: 20000,

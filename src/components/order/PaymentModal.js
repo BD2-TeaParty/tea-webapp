@@ -1,44 +1,56 @@
-import { LinearProgress, Modal, Typography } from '@material-ui/core';
 import React from 'react';
+import { Button, LinearProgress, Modal, Typography } from '@material-ui/core';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import './PaymentModal.css';
 
 const PaymentModal = props => {
 
-    const renderModalContent = () => {
+    const renderModalContent = React.useMemo(() => {
+        console.log('PaymentModal props', props);
         //loading
         if (props.confirmOrderLoading && !props.confirmOrderError) {
             return (
-                <div>
-                    <LinearProgress />
-                    <Typography> Proces opłaty </Typography>
+                <div className='modal-container'>
+                    <div className='icon-div' style={{width: '100%'}}>
+                    <LinearProgress className='progress'/>
+                    <Typography className='title' style={{margin: '10%'}}> Proces opłaty </Typography>
+                    </div>
                 </div>
             )
         
         //error
         } else if (!props.confirmOrderLoading && props.confirmOrderError) {
             return (
-                <div>
-                    <Typography>error</Typography>
+                <div className='modal-container'>
+                    <Typography className='title'>error</Typography>
                 </div>
             )
         
-        //success or unknown
+        //success or unknown ;-;
         } else {
             return (
-                <div>
-                    <Typography>sukces!</Typography>
+                <div className='modal-container'>
+                    <div className='icon-div'>
+                        <CheckCircleIcon />
+                        <Typography className='title'>Sukces!</Typography>
+                    </div>
+                    <Button variant='outlined' onClick={ () => props.closeRequest()}>
+                        Zamknij okno
+                    </Button>
                 </div>
             )
         }
-    }
+    });
+
     return (
         <Modal
             open={props.open}
-            // onClose={props.onClose}
+            style={{display: 'flex', justifyContent: 'center'}}
             >
-            {renderModalContent()}
+            {renderModalContent}
         </Modal>
     )
-}
+};
 
 
 export default PaymentModal;
