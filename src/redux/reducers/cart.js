@@ -20,8 +20,8 @@ export const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TO_CART:
             const index = state.cartItems.findIndex( cartObj => cartObj.item.id === action.payload.id);
-            console.log(action.payload.id);
-            console.log('koszyk przed:',state.cartItems, index);
+            // console.log(action.payload.id);
+            // console.log('koszyk przed:',state.cartItems, index);
 
             if (index === -1) {
                 return {
@@ -62,7 +62,7 @@ export const cartReducer = (state = initialState, action) => {
                         : item) 
             }
         case RECEIVE_CONFIRM_ORDER_SUCCESS:
-            console.log('yeeeeeeee cartReducer');
+            // console.log('yeeeeeeee cartReducer');
             return initialState;
         // case types.ADD_TO_CART_REQUEST:
         //     return {
