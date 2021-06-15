@@ -20,7 +20,7 @@ const CustomAccordion = withStyles( () => ({
         borderWidth: 1,
         borderRadius: 5,
         boxShadow: 'box-shadow: 10px 2px 10px 2px rgba(0,0,0,.2);',
-        marginTop: '5%',
+        marginTop: 20,
         
     },
     expanded: {
