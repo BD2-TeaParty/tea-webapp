@@ -72,7 +72,7 @@ const Summary = props => {
         setDiscount(null);
         setDiscountValidated(false);
         const code = discountRef.current.value;
-        console.log('kodzik', code);
+        // console.log('kodzik', code);
         for (let discountObj of props.availableDiscounts) {
             if (discountObj.code === code) {
                 setDiscount(discountObj);
@@ -142,7 +142,7 @@ const Summary = props => {
                 </div>
 
                 <div className='pay-view'>
-                    <Button className='pay-button' onClick={ () => props.confirmOrder(totalPrice)}>
+                    <Button className='pay-button' onClick={ () => props.confirmOrder(totalPrice, props.shippingPrice, discountPrice)}>
                         Potwierdzam i kupuję
                     </Button>
                 </div>

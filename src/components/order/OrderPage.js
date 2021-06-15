@@ -80,12 +80,16 @@ const OrderPage = props => {
     }
 
 
-    const confirmCallback = (totalPrice) => {
+    const confirmCallback = (totalPrice, shippingPrice, discount) => {
         order.totalPrice = totalPrice;
+        order.shippingPrice = shippingPrice;
+        order.discount = discount;
         props.confirmOrder(order);
         setModalIsOpen(true);
 
     }
+
+
     return (
         <div className='order-container'>
             {props.tempOrders.length ?
@@ -123,7 +127,6 @@ const OrderPage = props => {
             </div>
             }
         </div>
-
     )
 }
 
