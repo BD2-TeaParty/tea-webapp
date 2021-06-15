@@ -18,7 +18,7 @@ import './CartView.css';
 const CartView = props => {
 
 
-    const emptyCart = 'Brak przedmiotów w koszyku.';
+    // const emptyCart = 'Brak przedmiotów w koszyku.';
     const totalCost = 'Łączny koszt: ';
 
     const [price, setPrice] = useState(0.0);

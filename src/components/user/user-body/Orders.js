@@ -1,6 +1,5 @@
 import React from 'react';
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@material-ui/core';
-import { FixedSizeList as List } from 'react-window';
 import { connect } from 'react-redux';
 
 import './Orders.css';

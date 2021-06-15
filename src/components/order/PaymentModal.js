@@ -5,8 +5,8 @@ import './PaymentModal.css';
 
 const PaymentModal = props => {
 
-    const renderModalContent = React.useMemo(() => {
-        console.log('PaymentModal props', props);
+    const renderModalContent = () => {
+        // console.log('PaymentModal props', props);
         //loading
         if (props.confirmOrderLoading && !props.confirmOrderError) {
             return (
@@ -40,7 +40,7 @@ const PaymentModal = props => {
                 </div>
             )
         }
-    });
+    };
 
     return (
         <Modal

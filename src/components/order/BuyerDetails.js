@@ -1,4 +1,4 @@
-import { Button, TextField, Typography } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import { setAddress } from '../../redux/actions/userActions';
@@ -28,7 +28,7 @@ const BuyerDetails = props => {
 
     // const defaultAddress = `${props.address.street}${props.address.streetNo ? ' ' + props.address.streetNo : ''}${props.address.houseNo ? '/' + props.address.houseNo : ''}`;
     const saveAddress = () => {
-        console.log(nameRef);
+        // console.log(nameRef);
         props.setAddress(nameRef.current.value, cityRef.current.value, postcodeRef.current.value, streetRef.current.value, mailRef.current.value, phoneRef.current.value);
     }
     console.log('buyerdetails props', props);
