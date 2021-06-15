@@ -58,29 +58,53 @@ const registerError = message => ({
     payload: message
 }) 
 
+const validateUser = (username, password) => {
+
+    const users = store.getState().userReducer.availableUsers;
+    
+    for( let user of users) {
+        if (username === user.name && password === user.password)
+            return true;
+    }
+    return false;
+}
 
 export const signIn = data => dispatch => {
 
 
     dispatch(requestLogin());
 
-    return axios({
-        url: LOGIN_ENDPOINT,
-        timeout: 20000,
-        method: 'POST',
-        data: data,
-        responseType: 'json'
-        })
+    //simulate api response
+    setTimeout( () => {
+        if (validateUser(data.user, data.password) ) {
 
-        .then( response => {
-            console.log('Got user', response);
-            dispatch(loginSuccessful(response.data));
-        })
+            const user = {
+                id: 0,
+                name: data.user,
+                email: ''
+            }
+            return dispatch(loginSuccessful(user));
+        } else {
+            return dispatch(loginError('Nieprawidłowe dane') );
+        }
+    }, 2000);
+    // return axios({
+    //     url: LOGIN_ENDPOINT,
+    //     timeout: 20000,
+    //     method: 'POST',
+    //     data: data,
+    //     responseType: 'json'
+    //     })
 
-        .catch( response => {
-            console.log('Got user error:', response);
-            dispatch(loginError(response.message));
-        })
+    //     .then( response => {
+    //         console.log('Got user', response);
+    //         dispatch(loginSuccessful(response.data));
+    //     })
+
+    //     .catch( response => {
+    //         console.log('Got user error:', response);
+    //         dispatch(loginError(response.message));
+    //     })
 }
 
 export const registerUser = data => dispatch => {
@@ -105,10 +129,10 @@ export const registerUser = data => dispatch => {
 
 }
 
-export const signOut = dispatch => {
+export const signOut = () => dispatch => {
     
     console.log('logging out');
-    dispatch(logout())
+    return dispatch(logout())
 }
 
 
@@ -125,7 +149,7 @@ const receiveOrdersError = json => ({
     type: RECEIVE_ORDERS_ERROR,
     payload: json   
 })
-export const fetchOrders = dispatch => {
+export const fetchOrders = () => dispatch => {
 
 
     const userID = store.getState().userReducer.user.id;
@@ -169,7 +193,7 @@ const receiveWishlistError = json => ({
     payload: json,
 })
 
-export const fetchWishlist = dispatch => {
+export const fetchWishlist = () => dispatch => {
 
     const userID = store.getState().userReducer.user.id;
     const postJson = {

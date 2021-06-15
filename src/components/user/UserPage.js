@@ -13,6 +13,7 @@ import Returns from './user-body/Returns';
 import Settings from './user-body/Settings';
 
 import './UserPage.css';
+import { signOut } from '../../redux/actions/userActions';
 
 
 
@@ -77,6 +78,9 @@ const UserPage = props => {
                         <Typography className='user-page-navigator-buttons-typo'>Ustawienia konta</Typography>
                     </Button>
 
+                    <Button onClick={() => props.signOut()} className='logout-button'>
+                        Wyloguj się
+                    </Button>
                 </div>
             </div>
 
@@ -98,4 +102,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(UserPage);
+export default connect(mapStateToProps, {signOut})(UserPage);

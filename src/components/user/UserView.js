@@ -14,8 +14,12 @@ const UserView = props => {
     console.log('user view', props)
     return (
         <section id='user-view' className='user-view'>
-            {/* <GuestPanel /> */}
-            <UserPage />
+            {props.isLoggedIn
+            ?
+                <UserPage />
+            :
+                <GuestPanel />
+            }
         </section>
     )
 }
