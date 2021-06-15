@@ -32,12 +32,25 @@
 
 .user-page-navigator-buttons button {
     width: 100%;
-    justify-content: flex-start !important;
+    justify-content: flex-start;
     padding: 10px 0 !important;
     transition-duration: 0s !important;
-    border-radius: 0px !important;
+    border-radius: 0px;
     border-bottom: 1px solid #ddd !important;
 }
 .user-page-navigator-buttons-typo {
     margin-left: 15px !important;
+}
+
+.user-page-navigator-buttons .logout-button {
+    justify-content: center !important;
+    margin-top: 25px;
+    width: 50%;
+    border-radius: 10px;
+    background-color: #f44336;
+    color: #fff;
+}
+
+.user-page-navigator-buttons .logout-button:hover {
+    background-color: #c62828;
 }

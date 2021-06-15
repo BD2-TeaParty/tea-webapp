@@ -129,10 +129,10 @@ export const registerUser = data => dispatch => {
 
 }
 
-export const signOut = dispatch => {
+export const signOut = () => dispatch => {
     
     console.log('logging out');
-    dispatch(logout())
+    return dispatch(logout())
 }
 
 
@@ -149,7 +149,7 @@ const receiveOrdersError = json => ({
     type: RECEIVE_ORDERS_ERROR,
     payload: json   
 })
-export const fetchOrders = dispatch => {
+export const fetchOrders = () => dispatch => {
 
 
     const userID = store.getState().userReducer.user.id;
@@ -193,7 +193,7 @@ const receiveWishlistError = json => ({
     payload: json,
 })
 
-export const fetchWishlist = dispatch => {
+export const fetchWishlist = () => dispatch => {
 
     const userID = store.getState().userReducer.user.id;
     const postJson = {
