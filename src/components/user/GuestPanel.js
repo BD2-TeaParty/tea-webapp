@@ -54,10 +54,13 @@ const GuestPanel = props => {
     }
 
     const submitLogin = () => {
-        const loginJson = {}
+        const loginJson = {
+            user: loginRef.current.value,
+            password: passwordRef.current.value
+        }
 
-        loginJson.user = loginRef.current.value;
-        loginJson.password = passwordRef.current.value;
+        // loginJson.user = loginRef.current.value;
+        // loginJson.password = passwordRef.current.value;
         
         setLoginSubmitClicked(true);
         console.log(loginSubmitClicked, props.userLoading, props.userError);

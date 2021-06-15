@@ -25,6 +25,17 @@ const initialState = {
 
     isLoggedIn: false,
     
+    //for login test purpose
+    availableUsers: [
+        {
+            name: "Anonim",
+            password: "bd2test",
+        },
+        {
+            name: "kaktusik123",
+            password: "mikromakro"
+        }
+    ],
     user: { id: "", name: "Anonim", email: ""},
     address: { name: "", city: "", postcode: "", streetAddress: "", email: "", phone: ""},
     userLoading: false,
@@ -89,6 +100,7 @@ export const userReducer = (state = initialState, action) => {
                 ...state,
                 userLoading: true,
                 userError: false,
+                errorMessage: ''
             }
         case LOGIN_SUCCESS:
             return {
@@ -96,6 +108,7 @@ export const userReducer = (state = initialState, action) => {
                 user: action.payload,
                 userLoading: false,
                 userError: false,
+                isLoggedIn: true,
                 errorMessage: '',
             }
         case LOGIN_ERROR:
