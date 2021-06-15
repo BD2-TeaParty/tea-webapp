@@ -11,7 +11,7 @@ const Orders = props => {
     const RenderOrder = ({item, index}) => {
         console.log('renderorder', item, index);
         return (
-        <Accordion key={item.id} >
+        <Accordion key={item.id} style={{marginTop: 10, border: '1px solid #ccc'}}>
             <AccordionSummary className='user-order-accordion-summary'>
                 <Typography className='index'>{index + 1}</Typography>
                 <div className='id-div'>
@@ -38,9 +38,6 @@ const Orders = props => {
             <Typography className='title'>Twoje Zamówienia</Typography>
 
             {props.items.length ?
-                // <List>
-                //     {orderRow}
-                // </List>
                 props.items.map( (item, index) => <RenderOrder item={item} index={index}/>)
             :
                 <Typography>Brak zamówień :(</Typography>

@@ -2,7 +2,7 @@
 
 export const validateDiscount = (cartPrice, discountObj, validateCallback) => {
 
-    console.log('validating', cartPrice, discountObj, validateCallback);
+    // console.log('validating', cartPrice, discountObj, validateCallback);
     if (discountObj !== null) {
         switch (discountObj.type) {
             case 'regular':
