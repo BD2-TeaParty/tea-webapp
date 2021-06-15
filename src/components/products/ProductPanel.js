@@ -11,7 +11,7 @@ const ProductPanel = props => {
     // console.log('\nproduct panel ', props);
     return (
 
-        <GridListTile key={props.id} className='gridlist-item'>
+        <GridListTile className='gridlist-item'>
 
             <img src={props.img} alt={props.title} className='product-panel-image'/>
 
