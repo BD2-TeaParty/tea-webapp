@@ -1,5 +1,6 @@
 // eslint-disable-next-line
 import axios from "axios";
+import { oraclexddd } from "../../components/sql-dev/oracleFetch";
 import { 
     REQUEST_PRODUCTS, 
     RECEIVE_PRODUCTS, 
@@ -33,6 +34,9 @@ export const fetchProducts = url => dispatch => {
 
     dispatch(requestProducts());
 
+    console.log('oracle call');
+    oraclexddd();
+    console.log('oracle postcall');
     setTimeout( () => {
         dispatch(receiveTest());
     }, 100);
