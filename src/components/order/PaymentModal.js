@@ -47,7 +47,7 @@ const PaymentModal = props => {
             open={props.open}
             style={{display: 'flex', justifyContent: 'center'}}
             >
-            {renderModalContent}
+            {renderModalContent()}
         </Modal>
     )
 };
