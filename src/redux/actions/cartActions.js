@@ -2,7 +2,8 @@ import {
     ADD_TO_CART, 
     REMOVE_FROM_CART,
     DECREASE_QUANTITY,
-    INCREASE_QUANTITY, 
+    INCREASE_QUANTITY,
+    CLEAR_CART, 
 } from "../constants/cartTypes"
 
 
@@ -25,3 +26,7 @@ export const decreaseItem = itemIndex => dispatch => {
     dispatch({ type: DECREASE_QUANTITY, payload: itemIndex })
 }
 
+export const clearCart = () => dispatch => {
+
+    dispatch({ type: CLEAR_CART});
+}

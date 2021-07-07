@@ -9,6 +9,7 @@
     width: 25%;
     border-right: 1px solid #aaa;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .user-page-body {
