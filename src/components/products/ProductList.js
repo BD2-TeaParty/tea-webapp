@@ -111,7 +111,13 @@ const ProductList = props => {
                         <GridList  className='gridlist' >
                             {props.products.map( (product) => ( 
                                
-                                    <ProductPanel key={product.id} {...product} cartCallback={cartCallback} wishlistCallback={wishlistCallback} isOnWishlist={isOnWishlist(product.id)}/>
+                                    <ProductPanel 
+                                        key={product.id} 
+                                        {...product} 
+                                        cartCallback={cartCallback} 
+                                        wishlistCallback={wishlistCallback} 
+                                        isOnWishlist={isOnWishlist(product.id)}
+                                    />
                             ))}
                         </GridList>
 
