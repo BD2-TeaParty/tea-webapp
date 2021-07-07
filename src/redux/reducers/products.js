@@ -9,72 +9,72 @@ const initialState = {
             title: 'Bi Luo Chun',
             price: 19.99,
             c_origin: 'Chiny',
-            description: 'Dobra herbatka zielona z państwa środka. Zbiór Wiosna 2021.Dobra herbatka zielona z państwa środka. Zbiór Wiosna 2021Dobra herbatka zielona z państwa środka. Zbiór Wiosna 2021Dobra herbatka zielona z państwa środka. Zbiór Wiosna 2021',
+            description: 'Zielona herbata pochodząca z Dongting w prowincji Jiangsu w Chinach. Herbata wytrwarzana jest z młodych, świeżych pączków herbacianych, które zrywane są wczesną wiosną. ',
             weight: [0.1, 0.25, 0.5, 1], //zalozenie ze wszystko znormalizowane do KG
-            img: 'https://previews.123rf.com/images/donot6/donot61802/donot6180200073/95123713-green-tea-leaf-isolated-on-white-background-fresh-tea-leaves-on-a-white-background.jpg?auto=compress&cs=tinysrgb&h=350'
+            img: 'https://cdn.czasnaherbate.net/2138-large_default/bi-luo-chun.jpg?auto=compress&cs=tinysrgb&h=350'
         },
         {
             id: 1,
             title: 'Yunnan Gold',
             price: 9.99,
             c_origin: 'Chiny',
-            description: 'Dobra herbatka czarrrrrrXDDDna z państwa środka. Zbiór Zima 2020.',
+            description: 'Yunnan Gold swoją nazwę zawdzięcza dużej ilości złotych "tipsów", dzięki którym uzyskiwany susz ma niespotykany złocisto-bursztynowy odcień. Uzyskany napar jest mocny i aromatyczny, a smak wytrawny doceniany przez smakoszy.',
             weight: [0.1, 0.25, 0.5, 1], //zalozenie ze wszystko znormalizowane do KG
-            img: 'https://static.biotea.it/1593-large_default/display-foglie-te-in-bambu.jpg?auto=compress&cs=tinysrgb&h=350'
+            img: 'https://cdn.czasnaherbate.net/2165-large_default/golden-yunnan.jpg?auto=compress&cs=tinysrgb&h=350'
         },
         {
             id: 2,
             title: 'Yunnan Pure Gold',
             price: 23.99,
             c_origin: 'Chiny',
-            description: 'Dobra herbatka czarrrrrrna z państwa środka. Zbiór Zima 2020.',
+            description: 'Yunnan Pure Gold swoją nazwę zawdzięcza bardzo dużej ilości złotych "tipsów", dzięki którym uzyskiwany susz ma niespotykany złocisto-bursztynowy odcień. Uzyskany napar jest mocny i aromatyczny, a smak wytrawny doceniany przez smakoszy.',
             weight: [0.1, 0.25, 0.5, 1], //zalozenie ze wszystko znormalizowane do KG
-            img: 'https://5.imimg.com/data5/MB/HT/MY-54316299/loose-natural-tea-leaves-500x500.jpg?auto=compress&cs=tinysrgb&h=350'
+            img: 'https://cdn.czasnaherbate.net/2126-large_default/yunnan-golden-buds.jpg?auto=compress&cs=tinysrgb&h=350'
         },
         {
             id: 3,
             title: 'Jin Jun Mei',
             price: 35.99,
             c_origin: 'Chiny',
-            description: 'Dobra herbatka czarrrAAAAAAAAArrrna z państwa środka. Zbiór Zima 2020.',
+            description: 'Czarna herbata z chińskich gór Wuyi w prowincji Fujian. Odmiana stworzona w 2006 roku. Robiona bezwzględnie z wczesnych wiosennych zbiorów.',
             weight: [0.1, 0.25, 0.5, 1], //zalozenie ze wszystko znormalizowane do KG
-            img: 'https://sevencups.com/files/2016/04/Picking-Standard-Monkey-picked-3-4-leaves-from-top.jpg?auto=compress&cs=tinysrgb&h=350'
+            img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Jin_Jun_Mei.jpg/600px-Jin_Jun_Mei.jpg?auto=compress&cs=tinysrgb&h=350'
         },
         {
             id: 4,
             title: 'Yunnan',
             price: 100,
             c_origin: 'Chiny',
-            description: 'Dobra herbatka czarrrAAAAAAAAArrrna z państwa środka. Zbiór Zima 2020.',
+            description: 'Herbata ta pochodzi z górskiej prowincji Yunnan położonej w Chinach przy granicy z Wietnamem, Birmą i Laosem. Krzewy herbaciane charakteryzują się szerokimi i mięsistymi liśćmi o połyskującej powierzchni.',
             weight: [0.1, 0.25, 0.5, 1], //zalozenie ze wszystko znormalizowane do KG
-            img: 'https://thumbs.dreamstime.com/z/tea-leaves-3320184.jpg?auto=compress&cs=tinysrgb&h=350'
+            img: 'https://cdn.czasnaherbate.net/33-large_default/yunnan-black-premium.jpg?auto=compress&cs=tinysrgb&h=350'
         },
         {
             id: 5,
-            title: 'Yunnan',
+            title: 'Zielony Yunnan OP',
             price: 100,
             c_origin: 'Chiny',
-            description: 'Dobra herbatka czarrrAAAAAAAAArrrna z państwa środka. Zbiór Zima 2020.',
+            description: 'Zielona herbata z prowincji Yunnan. Liście tej herbaty mają regularny kształt i zielonkawy kolor. Daje bardzo smaczny napar o wyrafinowanym smaku i aromacie.',
             weight: [0.1, 0.25, 0.5, 1], //zalozenie ze wszystko znormalizowane do KG
-            img: 'https://static.biotea.it/1593-large_default/display-foglie-te-in-bambu.jpg?auto=compress&cs=tinysrgb&h=350'
+            img: 'https://cdn.czasnaherbate.net/2130-large_default/zielony-yunnan-op.jpg?auto=compress&cs=tinysrgb&h=350'
         },
         {
             id: 6,
-            title: 'straserserjtyikltuik',
+            title: 'Assam Dikom',
             price: 100,
-            c_origin: 'Chiny',
-            description: 'Dobra herbatka czarrrAASDASDASD z państwa środka. Zbiór Zima 2020.',
+            c_origin: 'Indie',
+            description: 'Prowincja Assam to region na północnym wschodzie Indii, gdzie uprawia się odmianę herbaty o nazwie Camellia assamica, której liście ze względu na wysoką jakość są często stosowane do uszlachetniania mieszanek gorszego gatunku.',
             weight: [0.1, 0.25, 0.5, 1], //zalozenie ze wszystko znormalizowane do KG
-            img: 'https://static.biotea.it/1593-large_default/display-foglie-te-in-bambu.jpg?auto=compress&cs=tinysrgb&h=350'
+            img: 'https://cdn.czasnaherbate.net/2112-large_default/assam-dikom-stgfopi.jpg?auto=compress&cs=tinysrgb&h=350'
         },
         {
             id: 7,
-            title: 'sftjsrtjsrtjsrtjstjsrtj',
+            title: 'Assam Satrupa Organic',
             price: 100,
-            c_origin: 'Chiny',
-            description: 'Dobra sdfgjsdfghjsdtjsrtjsdtj czarrrAAAAAAAAArrrna z państwa środka. Zbiór Zima 2020.',
+            c_origin: 'Indie',
+            description: 'Herbata czarna o łagodnym, klasycznym smaku i delikatnym słodowym aromacie z kakaowymi nutami.Idealna herbata do śniadania, również z dodatkiem mleka.',
             weight: [0.1, 0.25, 0.5, 1], //zalozenie ze wszystko znormalizowane do KG
-            img: 'https://static.biotea.it/1593-large_default/display-foglie-te-in-bambu.jpg?auto=compress&cs=tinysrgb&h=350'
+            img: 'https://cdn.czasnaherbate.net/2113-large_default/assam-satrupa-organic.jpg?auto=compress&cs=tinysrgb&h=350'
         },
     ],
     error: false,

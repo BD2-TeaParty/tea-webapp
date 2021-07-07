@@ -13,18 +13,19 @@ import WishlistToast from "../user/WishlistToast";
 
 const ProductList = props => {
 
-    // console.log('\nProductList::\n', props);
     const toastAdd = 'Dodano do listy życzeń';
     const toastRemove = 'Usunięto z listy życzeń';
+    const toastGuest = 'Niezalogowany użytkownik!';
     const cartAdd = 'Dodano do koszyka';
     const [toastOpen, setToastOpen] = useState('');
+
     const handleClose = (event, reason) => {
         if (reason ==='clickaway') return;
 
         setToastOpen('');
     }
 
-    
+    // weird way to fetch products but ok
     useEffect( () => {
         switch (props.type) {
             case types.ALL:
@@ -54,6 +55,10 @@ const ProductList = props => {
 
     const wishlistCallback = id => {
 
+        if ( props.isLoggedIn === false ) {
+            setToastOpen('guest');
+            return;
+        }
         const itemIndex = props.wishlistItems.findIndex(item => item === id);
 
         if (itemIndex === -1) {
@@ -106,13 +111,20 @@ const ProductList = props => {
                         <GridList  className='gridlist' >
                             {props.products.map( (product) => ( 
                                
-                                    <ProductPanel {...product} cartCallback={cartCallback} wishlistCallback={wishlistCallback} isOnWishlist={isOnWishlist(product.id)}/>
+                                    <ProductPanel 
+                                        key={product.id} 
+                                        {...product} 
+                                        cartCallback={cartCallback} 
+                                        wishlistCallback={wishlistCallback} 
+                                        isOnWishlist={isOnWishlist(product.id)}
+                                    />
                             ))}
                         </GridList>
 
                         <WishlistToast text={toastAdd} open={toastOpen} onClose={handleClose} type='add' />
                         <WishlistToast text={toastRemove} open={toastOpen} onClose={handleClose} type='remove' />
                         <WishlistToast text={cartAdd} open={toastOpen} onClose={handleClose} type='cart' />
+                        <WishlistToast text={toastGuest} open={toastOpen} onClose={handleClose} type='guest' />
                     </div>
                 )
             }
@@ -123,11 +135,12 @@ const ProductList = props => {
     return getProductStatus();
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
         products: state.productReducer.data,
         isLoading: state.productReducer.isLoading,
         error: state.productReducer.error,
+        isLoggedIn: state.userReducer.isLoggedIn,
         wishlistItems: selectIdsFromWishlist(state),
     }
 }

@@ -15,7 +15,6 @@ export const validateDiscount = (cartPrice, discountObj, validateCallback) => {
                 validateCallback(true);
                 return;
             }
-                break;
             case 'factor':
                 if ( cartPrice >= discountObj.minimum ) {
                     validateCallback(true);

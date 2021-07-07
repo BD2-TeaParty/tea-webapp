@@ -14,7 +14,15 @@ import Settings from './user-body/Settings';
 
 import './UserPage.css';
 import { signOut } from '../../redux/actions/userActions';
+import { clearCart } from '../../redux/actions/cartActions';
 
+
+const UserOption = ({ text, IconComponent, callback}) => (
+    <Button onClick={() => callback()}>
+        <IconComponent />
+        <Typography className='user-page-navigator-buttons-typo'>{text}</Typography>
+    </Button>
+)
 
 
 const UserPage = props => {
@@ -49,42 +57,56 @@ const UserPage = props => {
         }
     }
 
+    const logout = () => {
+        props.clearCart();
+        props.signOut();
+    }
+
     return (
         <div id='user-page' className='user-page'>
 
             <div id='user-page-navigator' className='user-page-navigator'>
+
                 <div className='user-page-welcome-message'>
+
                     <Typography variant='body2'>{welcomeMsg}</Typography>
                     <Typography variant='h6'> {props.user.name}</Typography>
                 </div>
 
                 <div className='user-page-navigator-buttons'> 
 
-                    <Button onClick={() => setUserView('orders')} >
-                        <FormatListBulletedIcon />
-                        <Typography className='user-page-navigator-buttons-typo'>Zamówienia</Typography>
-                    </Button>
-                    <Button onClick={() => setUserView('wishlist')} >
-                        <FavoriteBorderIcon />
-                        <Typography className='user-page-navigator-buttons-typo'>Lista życzeń</Typography>
-                    </Button>
-                    <Button onClick={() => setUserView('returns')} >
-                        <KeyboardReturnIcon />
-                        <Typography className='user-page-navigator-buttons-typo'>Zwroty i reklamacje</Typography>
-                    </Button>
-                    
-                    <Button onClick={() => setUserView('settings')} >
-                        <SettingsIcon />
-                        <Typography className='user-page-navigator-buttons-typo'>Ustawienia konta</Typography>
-                    </Button>
+                    <UserOption 
+                        callback={() => setUserView('orders')}
+                        IconComponent={FormatListBulletedIcon}
+                        text='Zamówienia'
+                    />
 
-                    <Button onClick={() => props.signOut()} className='logout-button'>
+                    <UserOption 
+                        callback={() => setUserView('wishlist')}
+                        IconComponent={FavoriteBorderIcon}
+                        text='Lista życzeń'
+                    />
+
+                    <UserOption 
+                        callback={() => setUserView('returns')}
+                        IconComponent={KeyboardReturnIcon}
+                        text='Zwroty i reklamacje'
+                    />
+
+                    <UserOption 
+                        callback={() => setUserView('settings')}
+                        IconComponent={SettingsIcon}
+                        text='Ustawienia konta'
+                    />
+
+                    <Button onClick={() => logout()} className='logout-button'>
                         Wyloguj się
                     </Button>
                 </div>
             </div>
 
             <div id='user-page-body' className='user-page-body'>
+                
                 {UserContent()}
             </div>
             
@@ -102,4 +124,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {signOut})(UserPage);
+export default connect(mapStateToProps, {signOut, clearCart})(UserPage);

@@ -7,12 +7,13 @@ import { calculateTotalPrice } from './util/calculateTotalPrice';
 import { validateDiscount } from './util/validateDiscount';
 import './Summary.css';
 import { itemBorderRadius } from './util/itemBorderRadius';
+import HelpText from '../util/HelpText';
 
 
 
 const Summary = props => {
 
-
+    const helpText = 'Testowe rabaty: BD2-10OFF ____ BD2-50PLNOFF ____ BD2-SHIPOFF  w src/redux/reducers/user.js'
     const cartMessage = 'Wartość koszyka';
     const shippingMessage = 'Koszt dostawy';
     const paymentMessage = 'Koszt płatności';
@@ -87,6 +88,7 @@ const Summary = props => {
 
     return (
         <div className='summary-container'>
+            <HelpText text={helpText}/>
             <Typography>Twoje zamówienie</Typography>
 
             <div className='summary-panel'>
@@ -108,6 +110,7 @@ const Summary = props => {
                 ))}
 
                 <div id='price-summary' className='price-summary'>
+                    
                     <div id='discount' className='discount'>
                         <TextField inputRef={discountRef} className='textfield' id='discount' label={discountLabel} defaultValue={props.order.discount} />
                         <Button onClick={ () => tryApplyingDiscount()}>
@@ -132,7 +135,7 @@ const Summary = props => {
 
                     <div className='price-component'>
                         <Typography className='text'>{discountMessage}</Typography>
-                        <Typography className='text'>{discountPrice} zł</Typography>
+                        <Typography className='text'>{discountPrice}zł</Typography>
                     </div>
 
                     <div className='final-price'>
@@ -145,8 +148,7 @@ const Summary = props => {
                     <Button className='pay-button' onClick={ () => props.confirmOrder(totalPrice, props.shippingPrice, discountPrice)}>
                         Potwierdzam i kupuję
                     </Button>
-                </div>
-                
+                </div>                
             </div>
         </div>
     )

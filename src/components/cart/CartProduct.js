@@ -9,10 +9,10 @@ import './CartProduct.css';
 const CartProduct = props => {
 
 
-    const quantityMsg = 'W koszyku:';
+    // const quantityMsg = 'W koszyku:';
     const removeMsg = 'Usuń z koszyka';
     const totalPrice = Math.round(props.quantity * props.item.price * 100) / 100;
-    console.log(props);
+    // console.log(props);
     return (
         <div style={props.style} className='cart-product-container' >
             <Typography>{props.index + 1}.</Typography>

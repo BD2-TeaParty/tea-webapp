@@ -1,5 +1,6 @@
 import {
     ADD_TO_CART,
+    CLEAR_CART,
     DECREASE_QUANTITY,
     INCREASE_QUANTITY,
     REMOVE_FROM_CART,
@@ -18,10 +19,8 @@ const initialState = {
 export const cartReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case ADD_TO_CART:
+        case ADD_TO_CART: {
             const index = state.cartItems.findIndex( cartObj => cartObj.item.id === action.payload.id);
-            console.log(action.payload.id);
-            console.log('koszyk przed:',state.cartItems, index);
 
             if (index === -1) {
                 return {
@@ -37,6 +36,7 @@ export const cartReducer = (state = initialState, action) => {
                         : item) 
                 }
             }
+        }
         case REMOVE_FROM_CART:
             return {
                 ...state,
@@ -62,7 +62,8 @@ export const cartReducer = (state = initialState, action) => {
                         : item) 
             }
         case RECEIVE_CONFIRM_ORDER_SUCCESS:
-            console.log('yeeeeeeee cartReducer');
+            return initialState;
+        case CLEAR_CART:
             return initialState;
         // case types.ADD_TO_CART_REQUEST:
         //     return {

@@ -5,6 +5,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Button,
 from '@material-ui/core';
 
 import { registerUser, signIn } from '../../redux/actions/userActions';
+import HelpText from '../util/HelpText'
 
 import './GuestPanel.css';
 
@@ -59,13 +60,10 @@ const GuestPanel = props => {
             password: passwordRef.current.value
         }
 
-        // loginJson.user = loginRef.current.value;
-        // loginJson.password = passwordRef.current.value;
-        
         setLoginSubmitClicked(true);
-        console.log(loginSubmitClicked, props.userLoading, props.userError);
+        // console.log(loginSubmitClicked, props.userLoading, props.userError);
 
-        console.log(loginJson);
+        // console.log(loginJson);
         props.signIn(loginJson);
         return;
     }
@@ -102,12 +100,13 @@ const GuestPanel = props => {
 
     return (
         <section id='login-panel-papa' className='login-container'>
+            <HelpText text='testowe dane: LOGIN: "Anonim" PASSWORD: "bd2test" src/redux/reducers/user.js'/>
             <div id='login-panel' className='login-panel'>
                 <div className='login-panel-title-view'>
                     <Typography className='login-panel-title'>{notLoggedIn}</Typography>
                 </div>
                 <div className='login-panel-content' >
-
+                    
                     {props.userLoading ? <CircularProgress /> : null}
 
                      <CustomAccordion variant='outlined' expanded={expanded === 'login'} onChange={handleChange('login')} >

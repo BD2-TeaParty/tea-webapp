@@ -22,6 +22,12 @@ function App() {
                     <Route path='/tea'>
                         <ProductList type='tea' />
                     </Route>
+                    <Route path='/coffee'>
+                        <ProductList type='coffee' />
+                    </Route>
+                    <Route path='/accessories'>
+                        <ProductList type='accessories' />
+                    </Route>
                     <Route path='/cart'>
                         <CartView />
                     </Route>

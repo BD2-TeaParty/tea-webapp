@@ -11,17 +11,19 @@ const ProductPanel = props => {
     // console.log('\nproduct panel ', props);
     return (
 
-        <GridListTile key={props.id} className='gridlist-item'>
+        <GridListTile className='gridlist-item'>
 
             <img src={props.img} alt={props.title} className='product-panel-image'/>
 
-            <Typography className='product-panel-title-text' variant='h6'>{props.title}</Typography>
-            
+            <Typography className='title' variant='h6' nowrap>{props.title}</Typography>
+            <Typography className='price'>{props.price}zł</Typography>
             <div className='product-panel-description'>
                 <Typography nowrap='true' className='product-panel-description-text'>{props.description}</Typography>
+
             </div>
 
             <div className='product-panel-bottom-bar'>
+
                 <IconButton className='product-panel-icon' onClick={ () => props.wishlistCallback(props.id)}>
                     {props.isOnWishlist ?
                         <FavoriteIcon style={{color: '#d50000'}}/>
@@ -29,6 +31,7 @@ const ProductPanel = props => {
                         <FavoriteBorderIcon style={{color: '#d50000'}}/>
                     }
                 </IconButton>
+
                 <IconButton className='product-panel-icon' onClick={ () => props.cartCallback(props.id)}>
                     <AddShoppingCartIcon style={{color: 'green'}}/>
                 </IconButton>
