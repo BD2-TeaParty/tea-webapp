@@ -47,14 +47,14 @@ const initialState = {
     ordersError: false,
 
     wishlist: [
-        {
+        /*{
             id: 123, //id pozwala oberjzec przedmiot pod adresem typu teashop.pl/products?id=12387481762
             title: 'sadfas',
             description: 'ahfhafdahfd',
             img: 'https://static.biotea.it/1593-large_default/display-foglie-te-in-bambu.jpg',
             price: 100.0,
             date: new Date(),
-        },
+        },*/
     ],
     isLoading: false,
     error: false,

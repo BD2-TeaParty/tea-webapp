@@ -3,7 +3,7 @@ import React from 'react'
 
 
 
-const WishlistToast = props => {
+const WishlistToast = ({ open, type, onClose, text }) => {
 
     return (
         <Snackbar 
@@ -11,10 +11,10 @@ const WishlistToast = props => {
                 vertical: 'bottom',
                 horizontal: 'center'
             }}
-            open={props.open === props.type ? true : false} 
+            open={open === type ? true : false} 
             autoHideDuration={2000} 
-            onClose={props.onClose}
-            message={props.text}
+            onClose={onClose}
+            message={text}
         />
     )
 }
